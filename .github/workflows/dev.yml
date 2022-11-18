@@ -1,3 +1,5 @@
+# push site to dev server on dev commit/merge
+
 on:
   push:
     branches:
@@ -19,4 +21,4 @@ jobs:
         password: ${{ secrets.sftp_password }}
         port: 22
         local_path: './*'
-        remote_path: '/home/terrabyte_admin/dev.canapi.io/'
+        remote_path: ${{ secrets.sftp_remote_path_dev }}
