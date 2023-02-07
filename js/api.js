@@ -1,12 +1,13 @@
-// console.log("api.js loaded in " + document.referrer);
-var currentURL = window.location.href;
-currentURL = currentURL.split("//").pop();
+var currentURL = window.location.host;
 
-console.log("api.js loaded in " + currentURL);
+console.log("Canapi api.js loaded in " + currentURL);
 
 function canapiAction(){
-  if(currentURL == "dev.terrabyte.eco" || currentURL == "dev.canapi.io"){
+  if(currentURL == "www.dev.terrabyte.eco" || currentURL == "www.dev.canapi.io"){
     console.log("terrabyte action logged");
   }
-  console.log("canapi action logged!");
+  else{
+    console.log("request from unknown domain, unable to verify contribution");
+  }
+  
 }
