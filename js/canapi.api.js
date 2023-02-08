@@ -1,11 +1,12 @@
 var currentURL = window.location.host;
-var key;
+var key = null;
 
 console.log("canapi.api.js loaded in " + currentURL);
+canapiAction(key);
 
 
 // create POST message
-var date = new Date().toDateString;
+var currentDate = new Date().toDateString;
 var actionBody = {
   domain: currentURL,
   user: 'test',
