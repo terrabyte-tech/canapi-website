@@ -4,7 +4,6 @@ window.addEventListener("load", function(){
   var key = null;
 
   console.log("canapi.api.js loaded in " + currentURL);
-  canapiAction(key);
 
 
 
@@ -14,8 +13,6 @@ window.addEventListener("load", function(){
   if(canapiTriggers.length > 0){
     for(let x = 0; x < canapiTriggers.length; x++){
       canapiTriggers[x].addEventListener("click", function(){
-
-        console.log("clicked a canapi trigger!");
         key = this.getAttribute("data-key");
         canapiAction(key);
       })
@@ -24,17 +21,23 @@ window.addEventListener("load", function(){
 
 
   function canapiAction(key){
-    if(currentURL == "www.dev.terrabyte.eco" || currentURL == "www.dev.canapi.io"){
-      console.log("terrabyte action logged");
-      console.log("key: " + key);
+    if(key !== null){
+      if(currentURL == "www.dev.terrabyte.eco" || currentURL == "www.dev.canapi.io"){
+        console.log("terrabyte action logged");
+        console.log("key: " + key);
+      }
+      else{
+        console.log("request from unknown domain, unable to verify contribution");
+        console.log("attempted key: " + key);
+      }
     }
     else{
-      console.log("request from unknown domain, unable to verify contribution");
+      console.log("bad key, unable to verify contribution");
       console.log("attempted key: " + key);
     }
   }
 
-  
+
   // create POST message
   var currentDate = new Date().toDateString;
   var actionBody = {
