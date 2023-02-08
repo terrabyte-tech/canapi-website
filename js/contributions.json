@@ -1,0 +1,24 @@
+{
+  "devClients": [
+    {
+      "name": "Terrabyte",
+      "domain": "www.terrabyte.eco",
+      "contributions": [
+        {
+          "user": "test",
+          "date": "null"
+        }
+      ]
+    },
+    {
+      "name": "Canapi",
+      "domain": "www.dev.canapi.io",
+      "contributions": [
+        {
+          "user": "test",
+          "date": "null"
+        }
+      ]
+    }
+  ]
+}
