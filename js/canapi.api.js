@@ -1,13 +1,15 @@
 window.addEventListener("load", function(){
 
+// get/initialize client side data
   var currentURL = window.location.host;
   var key = null;
 
   console.log("canapi.api.js loaded in " + currentURL);
+  var canapiInitObj = document.querySelector("[data-canapi-init]");
+  var canapiHost = canapiInitObj.getAttribute("data-host");
 
 
-
-  // listen for clicks on canapi click triggers
+// listen for clicks on canapi click triggers
   var canapiTriggers = document.querySelectorAll("[data-canapi-click-trigger]");
 
   if(canapiTriggers.length > 0){
@@ -18,6 +20,7 @@ window.addEventListener("load", function(){
       })
     }
   }
+////////////
 
 
   function canapiAction(key){
@@ -39,11 +42,22 @@ window.addEventListener("load", function(){
 
 
   // create POST message
-  var currentDate = new Date().toDateString;
+  // var currentDate = new Date().toDateString;
   var actionBody = {
     domain: currentURL,
-    user: 'test',
-    date: currentDate
+    user: 'test'
   };
+
+  console.log(canapiHost);
+
+  // const makeAPIRequest = async () => {
+  //   await fetch(canapiHost, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(actionBody)
+  //   })
+  // }
   
 }, false);
