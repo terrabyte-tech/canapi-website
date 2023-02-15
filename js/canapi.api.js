@@ -28,6 +28,14 @@ window.addEventListener("load", function(){
       if(currentURL == "www.dev.terrabyte.eco" || currentURL == "www.dev.canapi.io"){
         console.log("terrabyte action logged");
         console.log("key: " + key);
+
+        makeAPIRequest();
+      }
+      if(currentURL == "localhost:3000" || currentURL == "localhost:8000"){
+        console.log("local action logged");
+        console.log("key: " + key);
+
+        makeAPIRequest();
       }
       else{
         console.log("request from unknown domain, unable to verify contribution");
@@ -48,16 +56,14 @@ window.addEventListener("load", function(){
     user: 'test'
   };
 
-  console.log(canapiHost);
-
-  // const makeAPIRequest = async () => {
-  //   await fetch(canapiHost, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(actionBody)
-  //   })
-  // }
+  const makeAPIRequest = async () => {
+    await fetch(canapiHost, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(actionBody)
+    })
+  }
   
 }, false);
