@@ -1,4 +1,123 @@
-*{
+/* layout */
+body{
+  /* overflow-y: scroll; */
+  background: linear-gradient(135deg, transparent,var(--accent-green-light-trans));
+  /* position:relative; */
+}
+.page-container{
+  overflow:hidden;
+}
+.padded-section{
+  padding:30px;
+}
+
+/* main nav */
+header .canapi-logo{
+  width: 125px;
+  height: 40px;
+  background-position: top left;
   margin:0;
-  padding:0;
+}
+
+.nav-container{
+  
+}
+.nav-item-container{
+  color:inherit;
+  font-weight:normal;
+  opacity:1;
+  margin-right:20px;
+  padding:8px 10px;
+  border-radius:4px;
+  font-size:18px;
+  /* transition:background-color .25s; */
+}
+.nav-item-container:last-child{
+  margin-right:0px;
+}
+.nav-item-container:hover{
+  background-color:var(--accent-green-light-trans);
+  color:inherit;
+}
+.nav-item-container:active{
+  color:inherit;
+  opacity: 1;
+  transform: scale(.97);
+  background-color:var(--accent-green-trans);
+}
+.canapi-logo{
+  background-image: url('https://app.canapi.io/img/canapi-logo.png');
+  max-width: 100%;
+  width:350px;
+  height: 150px;
+  margin-bottom: 20px;
+  background-position: center;
+}
+
+
+/* hero */
+main{
+  /* background-color:var(--accent-green); */
+  /* padding:10px; */
+}
+main h6{
+  margin-bottom:20px;
+}
+main p{
+  font-size:18px;
+}
+
+/* hero assets */
+.canapi-brackets{
+  pointer-events: none;
+  background-image: url('https://app.canapi.io/img/canapi-favicon.png');
+  width:500px;
+  height:800px;
+  opacity:20%;
+  position:absolute;
+  top:100px;
+  left:-200px;
+}
+.code-text{
+  font-family: 'Roboto Mono', Courier, monospace;
+}
+.canapi-code{
+  font-size:18px;
+  pointer-events: none;
+  transform:rotate(90deg);
+  transform-origin: top left;
+  color:var(--accent-green);
+  opacity:20%;
+  position:absolute;
+  width:400px;
+  top:-10px;
+  right:-410px;
+}
+
+
+/* footer */
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* responsive styles */
+@media only screen and (max-width: 600px){
+  header{
+    display:none;
+  }
+  .canapi-logo{
+    max-width: 350px;
+    width:100%;
+    height: 150px;
+    /* margin-bottom: 20px; */
+  }
+  footer .max-width{
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  footer .button-container{
+    margin-top:10px;
+  }
 }
