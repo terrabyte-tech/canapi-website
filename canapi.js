@@ -6,7 +6,8 @@ window.addEventListener("load", function(){
   
     console.log("canapi.js loaded in " + currentURL);
     var canapiInitObj = document.querySelector("[data-canapi-init]");
-    var canapiHost = canapiInitObj.getAttribute("data-host");
+    // var canapiHost = canapiInitObj.getAttribute("data-host");
+    var canapiHost = "https://us-central1-terrabyte-canapi.cloudfunctions.net/app";
   
   
   // listen for clicks on canapi click triggers
