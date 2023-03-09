@@ -1,6 +1,6 @@
 window.addEventListener("load", function(){
 
-  console.log("scripts.js loaded");
+  console.log("Canapi scripts.js loaded");
 
 ///////////////
   
