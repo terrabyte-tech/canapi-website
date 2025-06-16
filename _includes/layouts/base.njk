@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!--------->
+<!-- metadata -->
+<!--------->
+
+  <!-- no index variable -->
+  {% if noIndex %}
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+  {% endif %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ site.title }}{% if subtitle %}: {{ subtitle }}{% endif %}</title>
+
+  <meta name="description" content="{{ site.description }}">
+  <meta name="author" content="{{ site.author }}">
+  <meta name="keywords" content="{{ keywords }}">
+
+  {# Open Graph meta tags #}
+  <meta property="og:title" content="{{ site.title }}{% if subtitle %}: {{ subtitle }}{% endif %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}">
+  <meta property="og:description" content="{% if subdescription %}{{ subdescription }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image" content="img/meta/og-image.png">
+
+  {# Favicon links #}
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+
+
+<!--------->
+<!-- css -->
+<!--------->
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {# <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Manrope:wght@400;800&display=swap" rel="stylesheet"> #}
+
+  <!-- icons -->
+  {# <script src="https://unpkg.com/phosphor-icons"></script> #}
+
+  <!-- stylesheets -->
+  <!-- frameworks -->
+  <link rel="stylesheet" type="text/css" href="https://au.goldenharpmedia.com/framework/packages/v1.0/au.css">
+  <!-- shared Terrabyte styles -->
+  <link rel="stylesheet" href="https://terrabyte.eco/css/shared-org-styles.css">
+
+  <!-- shared project styles -->
+  {# <link rel="stylesheet" href="https://app.canapi.io/css/shared-styles.css"> #}
+
+  <!-- site styles -->
+  <link rel="stylesheet" href="./css/shared-styles.css">
+  <link rel="stylesheet" href="./css/site-styles.css">
+
+  {# conditional styles #}
+  {% if testPage %}
+    <link href="/css/test-styles.css" rel="stylesheet" type="text/css" />
+  {% else %}
+    {# <link href="/css/other-styles.css" rel="stylesheet" type="text/css" /> #}
+  {% endif %}
+
+<!--------->
+<!-- js -->
+<!--------->
+
+  <!-- shared Terrabyte scripts -->
+  <script src="https://terrabyte.eco/js/shared-scripts.js"></script>
+
+  <!-- site scripts -->
+  <script src="./js/scripts.js"></script>
+
+<!--------->
+<!-- analytics -->
+<!--------->
+  <!-- microanalytics -->
+  <script data-host="https://microanalytics.io" data-dnt="false" src="https://microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
+
+</head>
+<body>
+  {# svg container component #}
+  {% include "svgs.njk" %}
+
+  {# accessibility/screen reader TOC component #}
+  {% include "sr-toc.njk" %}
+
+  {# noscript banner component #}
+  {% include "noscript-banner.njk" %}
+
+  <a name="top"></a>
+
+  <div class="page-container" data-au="flex-container flex-vertical flex-height">
+    {% include "header.njk" %}
+
+    {{ content | safe }}
+
+    {% include "footer.njk" %}
+
+    {# decorative elements #}
+    <div class="canapi-brackets"></div>
+    <div class="canapi-code code-text">
+      <p>&lt;script type="text/javascript" data-canapi-init data-host="https://www.app.canapi.io" src="https://app.canapi.io/js/canapi.js"&gt;&lt;/script&gt;</p>
+      <p>&lt;div data-canapi-click-trigger data-key="XX-XXXX-XXXX"&gt;</p>
+    </div>
+  </div>
+  
+</body>
+</html>
