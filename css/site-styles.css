@@ -1,5 +1,6 @@
 /*when javascript isn't enabled, toast message*/
-.toast-message{
+/* shared tb style */
+/* .toast-message{
   z-index:900;
   position:absolute;
   top:10px;
@@ -9,13 +10,18 @@
   color:white;
   padding:10px 20px 12px 20px;
   border-radius:4px;
+} */
+
+/* move to shared */
+.sr-only{
+  display:none;
 }
+
 
 /* layout */
 body{
   /* overflow-y: scroll; */
   background: linear-gradient(135deg, transparent,var(--accent-green-light-trans));
-  /* position:relative; */
 }
 .page-container{
   overflow:hidden;
@@ -59,7 +65,7 @@ header .canapi-logo{
   background-color:var(--accent-green-trans);
 }
 .canapi-logo{
-  background-image: url('https://app.canapi.io/img/canapi-logo.png');
+  background-image: url('../img/canapi-logo.png');
   max-width: 100%;
   width:350px;
   height: 150px;
@@ -82,6 +88,7 @@ main p{
 
 /* hero assets */
 .canapi-brackets{
+  user-select: none;
   pointer-events: none;
   background-image: url('https://app.canapi.io/img/canapi-favicon.png');
   width:500px;
@@ -97,6 +104,7 @@ main p{
 .canapi-code{
   font-size:18px;
   pointer-events: none;
+  user-select: none;
   transform:rotate(90deg);
   transform-origin: top left;
   color:var(--accent-green);
