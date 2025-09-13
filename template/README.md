@@ -70,7 +70,12 @@ It's like a boilerplate - but if the boilerplate changes later, you can add thos
 First, make sure all changes are committed to your branch. Then, create the subtree:
 
 ```
-git subtree add --prefix=template https://github.com/terrabyte-tech/terrabyte-11ty-template.git main --squash
+// define remote repo
+git remote add template-remote https://github.com/terrabyte-tech/terrabyte-11ty-template.git
+git fetch template-remote
+
+// ...then add the subtree from remote
+git subtree add --prefix=template template-remote main
 ```
 
 ### 2. Incorporate Template
@@ -130,8 +135,11 @@ npx @11ty/eleventy --serve
 As long as this repo is added to the template's `notify-downstream.yml` file, the template within the `/template` folder should _always_ be synced with the latest release of the template. For setup instructions, caveats, and maintenance tips, see the [workflow documentation](.github/workflows/README.md). Otherwise, you can manually update the subtree in the `/template` folder by running the following commands:
 
 ```
-$ git update template
-$ git subtree ____template repo path here____
+// fetch the remote
+git fetch template-remote
+
+// pull remote into /template
+git subtree pull --prefix=template template-remote main
 ```
 
 #### Version History

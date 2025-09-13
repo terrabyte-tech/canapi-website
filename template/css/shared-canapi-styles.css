@@ -1,3 +1,304 @@
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 /* Canapi styles that should be shared across project websites. */
 /* +++++++++++++++++++++++++++++++++++++++++++ */
+
+*{
+  /* margin:0;
+  padding:0; */
+  font-size:inherit;
+  font-family:inherit;
+  outline:none;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-touch-callout:none;
+  background-position: center;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* css variables */
+:root{
+  /* default avatar (before load) */
+  --avatarPath: linear-gradient(135deg, var(--accent-green), var(--accent-green));
+  /* --light: #ffffff; */
+  /* replace with --white */
+  --dark: #333841;
+  --dark-trans: #33384150;
+  --dark-light-trans: #33384118;
+  --grey: #e3e3e3;
+  --grey-light-trans:#e3e3e318;
+  --accent-green:#46af71;
+  --accent-lime:#80ce4d;
+  --accent-green-semi-dark-trans:#46af7185;
+  --accent-green-dark-trans:#46af7178;
+  /* --accent-lime-dark-trans:#80ce4d78; */
+  --accent-green-trans:#46af7150;
+  /* --accent-lime-trans:#80ce4d60; */
+  --accent-green-light-trans:#46af7118;
+  /* --accent-lime-light-trans:#80ce4d60; */
+
+  /* shared theme management */
+  /* --foreground: var(--dark); */
+  /* --background: var(--light); */
+  --shadow:0px 8px 17px -8px rgb(0 0 0 / 10%);
+
+  /* error colors */
+  /* --error-red:#e04141; */
+  /* replace with... */
+  --errorred:#e04141;
+  /* --error-red-light-trans:#e0414120; */
+  /* replace with... */
+  --errorred-light-trans:#e0414120;
+  /* fonts */
+  --primary-font: 'Manrope', sans-serif;
+  --secondary-font: monospace;
+}
+/* dark mode */
+body.dark,
+[data-theme~="dark"]{
+  background-color:#30353d;
+  /* --foreground: var(--light); */
+  /* --background: var(--dark); */
+  --shadow:0px 8px 17px -8px rgb(0 0 0 / 20%);
+}
+
+/* if system mode is enabled, and set to Dark */
+/* @media (prefers-color-scheme: dark) {
+	body.system{
+		--foreground: var(--light);
+    --background: var(--dark);
+	}
+} */
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* html elements */
+body{
+  /* put gradient on main page content? */
+  /* background:linear-gradient(135deg, #C1F0A3,#A0E1BA); */
+  /* background-color:var(--background); */
+  font-family: 'Manrope', sans-serif;
+  /* color:var(--foreground); */
+  font-size:14px;
+  /* min-height:100vh; */
+  /* overflow:hidden; */
+  /* height:100vh; */
+  /* height: calc(var(--vh, 1vh) * 100); */
+}
+
+/* style scrollbars */
+body::-webkit-scrollbar-track{
+  background-color:transparent;
+  transition:.15s;
+}
+*::-webkit-scrollbar{
+  width: 10px;
+  height: 10px;
+  background-color:transparent;
+  transition:.15s;
+}
+*::-webkit-scrollbar-thumb{
+  background-color:var(--accent-green);
+  border-radius:10px;
+  transition:.15s;
+}
+
+a{
+  color:var(--accent-green);
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+  user-select: none;
+
+  /* smaller on click transition */
+  transform: scale(1);
+  opacity:1;
+	position:	relative;
+  z-index:1;
+	display:inline-block;
+	transition: transform .25s, color .25s, background-color .25s, opacity .25s;
+}
+a:hover{
+  color:var(--accent-green-semi-dark-trans);
+}
+a:active{
+  color:var(--accent-green);
+  opacity:.6;
+  /* doesnt work with css transitions... */
+  /* color:var(--accent-green-trans) */
+  transform:scale(.95);
+}
+a.icon-link{
+  font-size:1.2em;
+}
+
+.button-container > *{
+  margin-right:12px;
+}
+.button-container > *:last-child{
+  margin-right:0;
+}
+button,
+.button{
+  border:1px solid var(--accent-green-light-trans);
+  border-radius:4px;
+  /* background-color:var(--background); */
+  background-color:transparent;
+  padding:8px 10px;
+  cursor:pointer;
+  color:var(--foreground);
+  user-select: none;
+
+  /* smaller on click transition */
+  transform: scale(1);
+  opacity:1;
+	position:	relative;
+	display:inline-block;
+	transition: transform .25s, color .25s, background-color .25s, opacity .25s, border .25s;
+  font-weight:inherit;
+}
+button:hover,
+.button:hover,
+button:focus,
+.button:focus{
+  /* background-color:#CDF3DC; */
+  border-color: var(--accent-green-trans);
+  /* color: var(--accent-green-semi-dark-trans); */
+  background-color:var(--accent-green-light-trans);
+}
+button:active,
+.button:active{
+  /* background-color:#A2E1BB; */
+  background-color:var(--accent-green-trans);
+  transform:scale(.95);
+}
+/* primary buttons */
+button.primary,
+.button.primary{
+  background-color:var(--accent-green);
+  color:var(--white);
+}
+button.primary:hover,
+.button.primary:hover,
+button.primary:focus,
+.button.primary:focus{
+  /* color:var(--grey); */
+  background-color:var(--accent-green-semi-dark-trans);
+}
+button.primary:active,
+.button.primary:active{
+  color:var(--white);
+  background-color:var(--accent-green);
+}
+p{
+  margin-bottom:10px;
+}
+p:last-child{
+  margin-bottom:0;
+}
+h1, h2, h3, h4, h5, h6{
+  font-weight:bold;
+  line-height:1em;
+  letter-spacing: -1px;
+}
+h1{
+  font-size:3em;
+}
+h2{
+  font-size:2.2em;
+}
+h3{
+  font-size:1.6em;
+}
+h4{
+  font-size:1.1em;
+}
+h6{
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+table{
+  width:100%;
+}
+th{
+  text-align:left;
+  margin-bottom:10px;
+}
+td{
+  text-align:left;
+}
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/* custom selectors, shared elements */
+.max-width{
+  max-width:1000px;
+  margin:0 auto;
+}
+
+/* page layouts */
+.page-container{
+  position:relative;
+  overflow-x:hidden;
+  z-index:1;
+}
+
+/* page pieces */
+/* tooltips */
+[data-tooltip]{
+  position:relative;
+  cursor: pointer;
+  z-index:1;
+  /* white-space:nowrap; */
+  /* min-width:0; */
+}
+[data-tooltip]:after,
+.tooltip{
+  /* container */
+  z-index:100;
+  pointer-events:none;
+  background-color:var(--background);
+  border-radius: 4px;
+  white-space: nowrap;
+  min-width:0;
+  /* width:300px; */
+  /* max-width:300px; */
+  border:1px solid var(--grey);
+  color:var(--foreground);
+  padding:12px 15px;
+  box-shadow:var(--shadow);
+  position:absolute;
+  left:0;
+  /* transition */
+  transition:.35s;
+  opacity:0;
+  top:70%;
+  /* content */
+  content:attr(data-tooltip);
+  text-transform: none;
+  font-size:14px;
+  font-weight:normal;
+  letter-spacing: normal;
+  text-align:left;
+}
+[data-tooltip]:hover:after,
+[data-tooltip]:hover .tooltip{
+  opacity:1;
+  top:150%;
+}
+.large[data-tooltip]:after{
+  min-width:auto;
+  width:300px;
+  white-space: initial;
+}
+[data-tooltip-force-right]:after,
+[data-tooltip-force-right] .tooltip{
+  left:unset;
+  right:0;
+}
