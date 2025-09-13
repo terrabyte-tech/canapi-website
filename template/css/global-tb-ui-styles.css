@@ -1,0 +1,198 @@
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/* global Terrabyte UI styles */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+
+/* inputs */
+input{
+  font-family: inherit;
+  font-size:inherit;
+  color:inherit;
+  background-color:transparent;
+  border:none;
+  outline:none;
+}
+/* ------------- */
+
+/* links */
+a{
+  color:currentColor;
+  text-decoration:none;
+  cursor:pointer;
+  user-select: none;
+  transform:scale(1);
+  display:inline-block;
+}
+a.text-link{}
+/* hover state */
+@media (hover: hover) and (pointer: fine) {
+  a:hover{
+    transform:scale(1.05);
+  }
+}
+/* active state */
+a:active{
+  transition:var(--ux-active-speed);
+  transform:scale(0.95);
+}
+/* ------------- */
+
+/* buttons */
+/* primary buttons */
+button,
+.button,
+input[type='submit']{
+  display:inline-block;
+  color:var(--white);
+  border:2px solid var(--accent);
+  border-radius:2px;
+  background-color:var(--accent);
+  padding:10px;
+  cursor:pointer;
+  transition:var(--ux-speed);
+  user-select: none;
+  line-height:20px;
+  font-size:14px;
+  transform:scale(1);
+}
+/* secondary button */
+button.secondary,
+.button.secondary,
+input[type='submit'].secondary{
+  color:var(--background);
+  border:2px solid var(--foreground);
+  background-color: var(--foreground);
+}
+/* tertiary/shadow button */
+button.shadow,
+.button.shadow,
+input[type='submit'].shadow{
+  color:inherit;
+  border:2px solid currentColor;
+  background-color:transparent;
+}
+/* hover state */
+@media (hover: hover) and (pointer: fine) {
+  button:hover,
+  .button:hover,
+  input[type='submit']:hover{
+    transform:scale(1.05);
+  }
+}
+/* active state */
+button:active,
+.button:active,
+input[type='submit']:active{
+  transition:var(--ux-active-speed);
+  transform:scale(0.95);
+}
+/* ------------- */
+
+/* banners */
+.banner{
+  position: fixed;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 12px;
+  color:white;
+  background-color:var(--tbgreen);
+}
+.banner.top{
+  top: 0;
+}
+.banner.info{
+  background-color: var(--infoblue);
+}
+.banner.warning{
+  background-color: var(--warningyellow);
+  color:dark;
+}
+.banner.error{
+  background-color: var(--errorred);
+}
+/* ------------- */
+
+/* accessibility table of contents */
+.sr-only.sr-toc{
+  background-color:var(--background);
+  border: 1px solid var(--foreground);
+  display:block;
+  position:fixed;
+  left:-200px;
+  top:0px;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  transition:width .5s, left .5s;
+  z-index:1000;
+  font-size:25px;
+  padding:0px;
+  font-family:inherit;
+}
+.sr-only.sr-toc:focus-within{
+  left:0;
+  width:100%;
+  max-width:500px;
+  height:auto;
+  padding:20px;
+  clip:unset;
+}
+.sr-toc h2{
+  margin-bottom:20px;
+}
+.sr-toc ul{
+  list-style-type:none;
+  padding:0px;
+  margin:0px;
+}
+.sr-toc a.text-link{
+  color:inherit;
+  display:block;
+  margin-bottom:10px;
+  text-transform:capitalize;
+}
+/* ------------- */
+
+/* loading elements */
+.loading-container{
+  position:relative;
+}
+.loading-overlay{
+  background-color: #333333dd;
+  backdrop-filter: blur(5px);
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  opacity:1;
+  transition:opacity 1s;
+}
+.loading-spinner{
+  width:30px;
+  height:30px;
+  margin-bottom:15px;
+  position:relative;
+}
+.loading-spinner:before{
+  content:"";
+  width:100%;
+  height:100%;
+  position:absolute;
+  border:2px solid currentColor;
+  border-right-color:transparent;
+  border-radius:50%;
+  animation:spinning ease-in-out 1s infinite;
+  transform:rotate(10deg);
+}
+@keyframes spinning {
+  from{
+    transform:rotate(10deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++ */

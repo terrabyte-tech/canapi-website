@@ -1,0 +1,14 @@
+{% macro banner(content, id, dismissible=true, timeout=false, position="top", type="info") %}
+  <div id="{{ id }}"
+    class="banner {{ position }} {{ type }}"
+    {% if timeout %} data-timeout="{{ timeout }}" {% endif %}
+    role="alert" aria-live="polite"
+  >
+    <div class="banner-content">
+      {{ content | safe }}
+    </div>
+    {% if dismissible %}
+      <button class="dismiss-banner-button" aria-label="Dismiss notification banner" onClick="this.parentNode.remove()">Close [X]</button>
+    {% endif %}
+  </div>
+{% endmacro %}
