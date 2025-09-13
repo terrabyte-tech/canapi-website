@@ -1,0 +1,58 @@
+name: Notify Downstream Repos
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate JWT
+        id: generate-jwt
+        run: |
+          npm install jsonwebtoken
+          node <<EOF > jwt.txt
+          const fs = require('fs');
+          const jwt = require('jsonwebtoken');
+          const APP_ID = '1920979';
+          const PRIVATE_KEY = \`${{ secrets.APP_PRIVATE_KEY }}\`;
+          const now = Math.floor(Date.now() / 1000);
+          const payload = {
+            iat: now,
+            exp: now + (10 * 60),
+            iss: APP_ID
+          };
+          const token = jwt.sign(payload, PRIVATE_KEY, { algorithm: 'RS256' });
+          console.log(token);
+          EOF
+          echo "jwt=$(cat jwt.txt)" >> $GITHUB_OUTPUT
+
+      - name: Get Installation Access Token
+        id: get-token
+        run: |
+          TOKEN=$(curl -s -X POST \
+            -H "Authorization: Bearer ${{ steps.generate-jwt.outputs.jwt }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/app/installations/84964465/access_tokens | jq -r .token)
+          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+
+      - name: Set downstream repos
+        id: set-repos
+        run: |
+          echo "repos=terrabyte-tech/pixel-pegasus-website" >> $GITHUB_OUTPUT
+
+      - name: Trigger downstream updates
+        run: |
+          repos="${{ steps.set-repos.outputs.repos }}"
+          for repo in $repos; do
+            echo "Triggering update for $repo..."
+            curl -X POST \
+              -H "Authorization: token ${{ steps.get-token.outputs.token }}" \
+              -H "Accept: application/vnd.github+json" \
+              https://api.github.com/repos/$repo/dispatches \
+              -d '{"event_type":"template-release","client_payload":{"tag":"${{ github.ref_name }}","commit_message_suffix":"[skip ci]"}}'
+          done
