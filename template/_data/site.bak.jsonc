@@ -1,0 +1,23 @@
+{
+  "templateVersion": "1.1.3",
+  "project": "Project Name",
+  "title": "Website Title",
+  "url": "https://www.terrabyte.eco",
+  "author": "Terrabyte",
+  "brand": "Terrabyte",
+  "language": "en-US",
+  "description": "Terrabyte is green tech company based in Omaha, NE.",
+  "accentColor": "#0A8C61",
+  "backgroundColor": "#333333",
+  "foregroundColor": "#ffffff",
+  // remove if no particular style set
+  "styleType": "pixel",
+  "schemaType": "Thing",
+  "schemaType": "Organization",
+  "fontsRel": "https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Manrope:wght@400;800&display=swap",
+  "fontsRel": "https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap",
+  // remove if no particular icons set
+  "iconsRel": "",
+  // remove if no Canapi integration
+  "canapiKey": ""
+}

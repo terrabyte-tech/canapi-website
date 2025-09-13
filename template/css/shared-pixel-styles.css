@@ -1,0 +1,490 @@
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/* pixel art styles that should be shared across pixel-themed websites. */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+
+/* overwrite high-level variables */
+:root{
+  /* fonts */
+  --primary-font: 'Press Start 2P', sans-serif;
+  --secondary-font: 'VT323', monospace;
+  --ux-speed:0s;
+
+  /* new black */
+  --black: #222222;
+}
+/* ------------- */
+
+/* overwrite high-level styles */
+*{
+  image-rendering: pixelated;
+}
+body{
+  font-size:22px;
+  line-height:1.3em;
+  letter-spacing:1px;
+  transition:opacity 1s;
+  width:100vw;
+  overflow-x:hidden;
+  /* cursor: url("../img/ui/arrow-pointer-cursor.png"), default; */
+  cursor: url("/img/pixel-assets/ui/mini-default-cursor.png"), default;
+}
+/* to hide images that overflow from 100vw */
+.scroll-manager{
+  width:100vw;
+  overflow-x:hidden;
+}
+/* ------------- */
+
+
+
+/* FOR SHARED? MORE GLOBAL?? */
+/* could replace this mechanic with a .show-at-700 or .hide-at-800 or even .show-500-1000 */
+/* STRUCTURE */
+/* adaptive views */
+.show-for-desktop,
+.show-for-tablet,
+.show-for-mobile{
+  display:none;
+}
+/* desktop */
+@media only screen and (min-width:1220px){
+  .show-for-desktop{
+    display:block;
+  }
+  .show-for-desktop.flex-container{
+    display:flex;
+  }
+}
+/*tablet*/
+@media only screen and (min-width:615px) and (max-width:1220px){
+  .show-for-tablet{
+    display:block;
+  }
+  .show-for-tablet.flex-container{
+    display:flex;
+  }
+}
+/*mobile*/
+@media only screen and (max-width:615px){
+  .show-for-mobile{
+    display:block;
+  }
+  .show-for-mobile.flex-container{
+    display:flex;
+  }
+}
+/* ------------- */
+
+/* SHARED TOO??? */
+section{
+  position:relative;
+  min-height:100vh;
+  /* overflow:hidden; */
+}
+.section-content{
+  max-width:1200px;
+  margin:0 auto;
+  padding:50px;
+}
+@media only screen and (max-width:615px){
+  .section-content{
+    padding:40px;
+  }
+}
+@media only screen and (max-height:500px){
+  section{
+    min-height:800px;
+  }
+}
+/* ------------- */
+
+
+/* ELEMENTS */
+/* header/nav */
+/* unique to PPT... */
+/* ------------- */
+
+
+/* TYPOGRAPHY */
+/*section large headers*/
+h1, h2, h3{
+  text-transform:uppercase;
+}
+h1{
+  font-size:30px;
+  margin-bottom:50px;
+  line-height:1.5em;
+  letter-spacing:2px;
+}
+/*hero question, how to support the project*/
+h2{
+  font-size:18px;
+  margin-bottom:20px;
+  letter-spacing:1px;
+}
+/*hero options*/
+h3{
+  font-size:14px;
+  line-height:1em;
+  letter-spacing:1px;
+}
+/* paragraph */
+p{
+  margin-bottom:20px;
+}
+p:last-child{
+  margin-bottom:0;
+}
+/* images */
+img{
+  user-select: none;
+}
+/* links */
+a{
+  /* cursor: url("../img/ui/finger-pointer-cursor.png"), pointer; */
+  cursor: url("/img/pixel-assets/ui/mini-pointer-cursor.png"), pointer;
+}
+a.text-link{
+	position:relative;
+	display:inline-block;
+	transition:.25s;
+}
+a.text-link:after{
+	content:"";
+	opacity:1;
+	position:absolute;
+	left:0;
+	top:calc(100% - 2px);
+	width:100%;
+	height:3px;
+	background-color:currentColor;
+  pointer-events: none;
+}
+a.text-link:hover:after{
+	animation:hoverLink .55s;
+}
+@keyframes hoverLink{
+	/* fade out */
+	0%, 24%{
+    width:0px;
+	}
+	25%, 29%{
+    width:10%;
+	}
+	30%, 54%{
+    width:15%;
+	}
+	55%, 79%{
+    width:60%;
+	}
+	80%, 100%{
+		width:100%;
+	}
+}
+@media only screen and (max-width:615px){
+  h1{
+    font-size:25px;
+    margin-bottom:30px;
+  }
+}
+
+.button-container{
+  position: relative;
+}
+button,
+.button,
+input[type="submit"]{
+  text-transform:uppercase;
+  color:inherit;
+  background-color:transparent;
+  border:3px solid currentColor;
+  padding:10px;
+  font-size:15px;
+  /* cursor: url("../img/ui/finger-pointer-cursor.png"), pointer; */
+  cursor: url("/img/pixel-assets/ui/mini-pointer-cursor.png"), pointer;
+}
+
+button:hover,
+.button:hover,
+input[type="submit"]:hover,
+button.selected,
+.button.selected{
+  background-color:rgba(255,255,255,.5);
+}
+button:active,
+.button:active,
+input[type="submit"]:active{
+  background-color:var(--foreground);
+  color:#e3e3e3;
+}
+button.primary,
+.button.primary{
+  background-color:rgba(0,0,0,.35);
+}
+button.primary:hover,
+.button.primary:hover{
+  background-color:rgba(0,0,0,.55);
+}
+button.primary:active,
+.button.primary:active{
+  background-color:rgba(0,0,0,.15);
+}
+
+
+/* pixel icons */
+.pixel-social-icon{
+  background-image:url("/img/pixel-assets/icons/social-spritesheet.png");
+  /* same as generic link */
+  background-position:-198px -158px;
+  background-size: 600%;
+  background-repeat: no-repeat;
+  width:40px;
+  height:40px;
+  display:inline-block;
+  vertical-align:middle;
+  margin:0 3px;
+}
+/* icons from spritesheet */
+#instagram-icon,
+.instagram-icon{
+  background-position:-2px 0px;
+}
+#facebook-icon,
+.facebook-icon{
+  background-position:-198px 0px;
+}
+#wdht-icon,
+.wdht-icon{
+  background-position:-41px -79px;
+}
+
+#twitter-icon,
+.twitter-icon{
+  background-position:-41px -158px;
+}
+#tiktok-icon,
+.tiktok-icon{
+  background-position:-2px -158px;
+}
+#etsy-icon,
+.etsy-icon{
+  background-position:-2px -237px;
+}
+
+#giphy-icon,
+.giphy-icon{
+  background-position:-2px -79px;
+}
+#tumblr-icon,
+.tumblr-icon{
+  background-position:-159px 0px;
+}
+#shop-icon,
+.shop-icon{
+  background-position:-80px 0px;
+}
+#website-icon,
+.website-icon{
+  background-position:-119px -79px;
+}
+#newsletter-icon,
+.newsletter-icon{
+  background-position:-159px -79px;
+}
+#survey-icon,
+.survey-icon{
+  background-position:-198px -79px;
+}
+#blog-icon,
+.blog-icon{
+  background-position:-80px -79px;
+}
+#terrabyte-icon,
+.terrabyte-icon{
+  background-position:-119px -158px;
+}
+#pinekeepers-icon,
+.pinekeepers-icon{
+  background-position:-159px -158px;
+}
+
+/* icon hover states */
+#instagram-icon:hover,
+.instagram-icon:hover{
+  background-position:-2px -42px;
+}
+#facebook-icon:hover,
+.facebook-icon:hover{
+  background-position:-198px -42px;
+}
+#wdht-icon:hover,
+.wdht-icon:hover{
+  background-position:-41px -121px;
+}
+#twitter-icon:hover,
+.twitter-icon:hover{
+  background-position:-41px -200px;
+}
+#tiktok-icon:hover,
+.tiktok-icon:hover{
+  background-position:-2px -200px;
+}
+#etsy-icon:hover,
+.etsy-icon:hover{
+  background-position:-2px -279px;
+}
+
+#giphy-icon:hover,
+.giphy-icon:hover{
+  background-position:-2px -121px;
+}
+#tumblr-icon:hover,
+.tumblr-icon:hover{
+  background-position:-159px -42px;
+}
+#shop-icon:hover,
+.shop-icon:hover{
+  background-position:-80px -42px;
+}
+#blog-icon:hover,
+.blog-icon:hover{
+  background-position:-80px -121px;
+}
+
+
+/* footer */
+footer{
+  background-color:var(--black);
+  font-size:18px;
+}
+footer a.text-link:after{
+  height:2px;
+}
+footer section{
+  height:auto;
+  min-height:auto;
+}
+footer .section-content{
+  max-width:1200px;
+  padding:40px 50px;
+}
+
+/*eco footer*/
+#cookie-disclaimer{
+  background-color:#388841cc;
+  color:var(--white);
+}
+
+/* footer logos */
+.footer-logos-container{
+  /* margin-bottom:20px; */
+}
+.footer-logos-container > *{
+  margin-right:20px;
+  margin-bottom:0;
+}
+
+.footer-logo{
+  height:35px;
+}
+/* custom sizing for odd-sized logos */
+.footer-logo.ppt-logo{
+  background-image:url('/img/pixel-assets/pixel-planet-today-white-lettering.png');
+  width:150px;
+}
+.footer-logo.tb-logo{
+  background-image:url('/img/pixel-assets/terrabyte-white-pixel-logo.png');
+  width:200px;
+}
+
+
+/* company links/additional links */
+.company-links-container{
+  margin:50px 0 30px 0;
+}
+
+#footer-copyright-container{
+  margin-right:30px;
+}
+
+/* website carbon */
+#wcb{
+  font-size:22px!important;
+  color:var(--white)!important;
+  font-weight:normal!important;
+}
+#wcb #wcb_2, #wcb #wcb_a, #wcb #wcb_g{
+  font-family:inherit!important;
+}
+#wcb #wcb_g{
+  border-radius:0!important;
+  background-color:transparent!important;
+  border-color:var(--foreground)!important;
+}
+#wcb #wcb_a{
+  font-weight:normal!important;
+  color:var(--background)!important;
+  background-color:var(--foreground)!important;
+  border-color:var(--foreground)!important;
+  border-radius:0!important;
+}
+/*  */
+
+/* responsive styles */
+@media only screen and (max-width:800px){
+  #logos-social-footer{
+    flex-wrap:wrap;
+  }
+  #footer-social-container{
+    justify-content:flex-start;
+    margin-top:20px;
+  }
+
+  #copyright-social-footer{
+    flex-wrap:wrap;
+  }
+  #footer-copyright-container{
+    margin-top:30px;
+    order:2;
+  }
+}
+
+/* mobile */
+@media only screen and (max-width:615px){
+  footer .section-content{
+    padding: 40px;
+  }
+  
+  .footer-logo{
+    height:35px;
+  }
+  .footer-logo.ppt-logo{
+    width:108px;
+  }
+  .footer-logo.tb-logo{
+    width:175px;
+  }
+  #wcb{
+    font-size:inherit!important;
+  }
+}
+/* extra small custom mobile */
+@media only screen and (max-width:400px){
+  #copyright-social-footer{
+    padding:0;
+  }
+  #footer-copyright-container{
+    /* padding:40px 40px 0 40px; */
+    margin-right:0;
+  }
+  #footer-social-container{
+    justify-content:center;
+    padding-bottom:40px;
+  }
+  .footer-logos-container > *{
+    display:none;
+  }
+  .footer-logos-container > .footer-logo.ppt-logo{
+    display:block;
+  }
+}
