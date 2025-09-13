@@ -1,21 +1,15 @@
-/*when javascript isn't enabled, toast message*/
-/* shared tb style */
-/* .toast-message{
-  z-index:900;
-  position:absolute;
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
-  background-color:#db2a2a;
-  color:white;
-  padding:10px 20px 12px 20px;
-  border-radius:4px;
-} */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/* site-specific styles */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/*  */
+/* Careful in template sync, should be site specific */
+/*  */
+
 
 /* move to shared */
-.sr-only{
+/* .sr-only{
   display:none;
-}
+} */
 
 
 /* layout */
@@ -26,6 +20,7 @@ body{
 .page-container{
   overflow:hidden;
 }
+/* shared? */
 .padded-section{
   padding:30px;
 }
