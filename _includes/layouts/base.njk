@@ -79,7 +79,8 @@
   {% endif %}
 
   <!-- shared project styles for {{ site.project }}; if applicable -->
-  {# <link rel="stylesheet" href="https://canapi.io/css/shared-styles.css"> #}
+  {# move to /css/shared-canapi-stles.css #}
+  <link rel="stylesheet" href="https://canapi.io/css/shared-styles.css">
 
   <!-- site styles -->
   <link rel="stylesheet" href="/css/site-styles.css" async defer>
@@ -131,7 +132,7 @@
   
 
 </head>
-<body data-theme="dark">
+<body>
 
 {# ########## #}
 {# dependencies #}
@@ -158,21 +159,24 @@
 {# ########## #}
 
   <a name="top"></a>
-  {% if site.project == "Pixel Planet Today" %}
-    {% include "ppt-header.njk" %}
-  {% else %}
+
+  <div class="page-container" data-au="flex-container flex-vertical flex-height">
     {% include "header.njk" %}
-  {% endif %}
 
-  <main>
-    {{ content | safe }}
-  </main>
+    <main>
+      {{ content | safe }}
+    </main>
 
-  <a name="footer"></a>
-  {% if site.styleType == "pixel" %}
-    {% include "pixel-footer.njk" %}
-  {% else %}
+    <a name="footer"></a>
     {% include "footer.njk" %}
-  {% endif %}
+
+    {# decorative elements #}
+    <div class="canapi-brackets"></div>
+    <div class="canapi-code code-text">
+      <p>&lt;script type="text/javascript" data-canapi-init data-host="https://www.app.canapi.io" src="https://app.canapi.io/js/canapi.js"&gt;&lt;/script&gt;</p>
+      <p>&lt;div data-canapi-click-trigger data-key="XX-XXXX-XXXX"&gt;</p>
+    </div>
+  </div>
+
 </body>
 </html>
