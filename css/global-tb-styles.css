@@ -1,0 +1,78 @@
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/* styles that are shared across org/between projects and sites */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+
+/* css variable initialization */
+:root{
+  /* refactor to pull in site.json */
+  --white: #ffffff;
+  /* --HCbackground: #ffffff; */
+  --dark: #333333;
+  --black: #000000;
+  --tbgreen: #0A8C61;
+  --errorred: #db2a2a;
+  --infoblue: #1e90ff;
+  --warningyellow: #ffcc00;
+  --accent: #0A8C61;
+  /* --HCaccent: #096242; */
+  /* iconography/branding */
+  --projectLogo: url("/img/project-logo.png");
+  /* fonts */
+  --primary-font: Helvetica, sans-serif;
+  --secondary-font: monospace;
+  /* anims */
+  --ux-speed: .35s;
+  --ux-hover-speed: var(--ux-speed);
+  --ux-active-speed: .15s;
+}
+/* variables for dark/light mode */
+[data-theme~="dark"]{
+  --background: var(--dark);
+  --foreground: var(--white);
+}
+[data-theme~="light"]{
+  --background: var(--white);
+  --foreground: var(--dark);
+}
+/* variables for high contrast */
+[data-theme~="dark"][data-theme~="hc"]{
+  --background: var(--black);
+  --foreground: var(--white);
+}
+[data-theme~="light"][data-theme~="hc"]{
+  --background: var(--white);
+  --foreground: var(--black);
+}
+/* ------------- */
+
+/* implementing shared variables (body) */
+body{
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--secondary-font);
+  min-height:100vh;
+}
+h1, h2, h3, h4, h5, h6, button, .button, input[type='submit']{
+  font-family: var(--primary-font);
+}
+.project-logo{
+  /* DEPRECATE, use image elem! */
+  background-image:var(--projectLogo);
+}
+hr{
+  border:none;
+  border-top:2px solid var(--accent);
+}
+/* ------------- */
+
+/* implementing shared variables (user interface) */
+*::selection{
+  color:var(--background);
+	background-color:var(--foreground);
+}
+*::-moz-selection{
+  color:var(--background);
+	background-color:var(--foreground);
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++ */
