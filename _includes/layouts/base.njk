@@ -73,14 +73,13 @@
   <!-- shared styles for site groupings -->
   <!-- shared pixel art styles -->
   {% if site.styleType == "pixel" %}
-    <!-- shared pixel site styles -->
-    {# <link rel="stylesheet" href="https://www.terrabyte.eco/css/shared-pixel-styles.css"> #}
     <link rel="stylesheet" href="/css/shared-pixel-styles.css">
   {% endif %}
 
-  <!-- shared project styles for {{ site.project }}; if applicable -->
-  {# move to /css/shared-canapi-stles.css #}
-  <link rel="stylesheet" href="https://canapi.io/css/shared-styles.css">
+  <!-- shared project styles for {{ site.project }}; if applicable to that project -->
+  {% if site.project == "Canapi" %}
+    <link rel="stylesheet" href="/css/shared-canapi-styles.css">
+  {% endif %}
 
   <!-- site styles -->
   <link rel="stylesheet" href="/css/site-styles.css" async defer>
@@ -132,7 +131,7 @@
   
 
 </head>
-<body>
+<body data-theme="">
 
 {# ########## #}
 {# dependencies #}
