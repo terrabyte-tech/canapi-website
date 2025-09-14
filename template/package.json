@@ -1,6 +1,6 @@
 {
   "name": "terrabyte-11ty-template",
-  "version": "1.3.6",
+  "version": "1.4.0",
   "main": "index.js",
   "scripts": {
     "sync-version": "node scripts/sync-version.js",

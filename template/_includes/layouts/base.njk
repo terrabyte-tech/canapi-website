@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-{% include "inspector-splash.njk" %}
+{% include "partials/inspector-splash.njk" %}
 
 <!--------->
 <!-- metadata -->
@@ -138,7 +138,7 @@
 {# ########## #}
 
   {# svg container component #}
-  {% include "svgs.njk" %}
+  {% include "partials/svgs.njk" %}
 
 {# ########## #}
 {# sys ui #}
@@ -151,7 +151,7 @@
   {# handled as .eleventy.js transform #}
 
   {# noscript banner component #}
-  {% include "banners.njk" %}
+  {% include "partials/banners.njk" %}
 
 {# ########## #}
 {# page begins #}
@@ -159,7 +159,7 @@
 
   <a name="top"></a>
   {% if site.project == "Pixel Planet Today" %}
-    {% include "ppt-header.njk" %}
+    {% include "partials/ppt-header.njk" %}
   {% else %}
     {% include "header.njk" %}
   {% endif %}
@@ -170,9 +170,9 @@
 
   <a name="footer"></a>
   {% if site.styleType == "pixel" %}
-    {% include "pixel-footer.njk" %}
+    {% include "partials/pixel-footer.njk" %}
   {% else %}
-    {% include "footer.njk" %}
+    {% include "partials/footer.njk" %}
   {% endif %}
 </body>
 </html>

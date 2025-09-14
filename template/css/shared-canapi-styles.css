@@ -30,7 +30,7 @@
   --dark-light-trans: #33384118;
   --grey: #e3e3e3;
   --grey-light-trans:#e3e3e318;
-  --accent-green:#46af71;
+  --accent:#46af71;
   --accent-lime:#80ce4d;
   --accent-green-semi-dark-trans:#46af7185;
   --accent-green-dark-trans:#46af7178;
@@ -41,8 +41,6 @@
   /* --accent-lime-light-trans:#80ce4d60; */
 
   /* shared theme management */
-  /* --foreground: var(--dark); */
-  /* --background: var(--light); */
   --shadow:0px 8px 17px -8px rgb(0 0 0 / 10%);
 
   /* error colors */
@@ -65,14 +63,6 @@ body.dark,
   --shadow:0px 8px 17px -8px rgb(0 0 0 / 20%);
 }
 
-/* if system mode is enabled, and set to Dark */
-/* @media (prefers-color-scheme: dark) {
-	body.system{
-		--foreground: var(--light);
-    --background: var(--dark);
-	}
-} */
-
 
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -82,7 +72,7 @@ body{
   /* put gradient on main page content? */
   /* background:linear-gradient(135deg, #C1F0A3,#A0E1BA); */
   /* background-color:var(--background); */
-  font-family: 'Manrope', sans-serif;
+  /* font-family: 'Manrope', sans-serif; */
   /* color:var(--foreground); */
   font-size:14px;
   /* min-height:100vh; */
@@ -103,35 +93,24 @@ body::-webkit-scrollbar-track{
   transition:.15s;
 }
 *::-webkit-scrollbar-thumb{
-  background-color:var(--accent-green);
+  background-color:var(--accent);
   border-radius:10px;
   transition:.15s;
 }
 
 a{
-  color:var(--accent-green);
+  color:var(--accent);
   font-weight:bold;
-  text-decoration:none;
-  cursor:pointer;
-  user-select: none;
-
-  /* smaller on click transition */
-  transform: scale(1);
-  opacity:1;
 	position:	relative;
   z-index:1;
-	display:inline-block;
-	transition: transform .25s, color .25s, background-color .25s, opacity .25s;
+  transition:.25s;
+	/* transition: transform .25s, color .25s, background-color .25s, opacity .25s; */
 }
 a:hover{
   color:var(--accent-green-semi-dark-trans);
 }
 a:active{
-  color:var(--accent-green);
-  opacity:.6;
-  /* doesnt work with css transitions... */
-  /* color:var(--accent-green-trans) */
-  transform:scale(.95);
+  /* color:var(--accent); */
 }
 a.icon-link{
   font-size:1.2em;
@@ -149,17 +128,11 @@ button,
   border-radius:4px;
   /* background-color:var(--background); */
   background-color:transparent;
-  padding:8px 10px;
-  cursor:pointer;
+  /* padding:8px 10px;?????????? */
   color:var(--foreground);
-  user-select: none;
-
-  /* smaller on click transition */
-  transform: scale(1);
-  opacity:1;
 	position:	relative;
-	display:inline-block;
-	transition: transform .25s, color .25s, background-color .25s, opacity .25s, border .25s;
+  transition:.25s;
+	/* transition: transform .25s, color .25s, background-color .25s, opacity .25s, border .25s; */
   font-weight:inherit;
 }
 button:hover,
@@ -180,7 +153,7 @@ button:active,
 /* primary buttons */
 button.primary,
 .button.primary{
-  background-color:var(--accent-green);
+  background-color:var(--accent);
   color:var(--white);
 }
 button.primary:hover,
@@ -193,13 +166,16 @@ button.primary:focus,
 button.primary:active,
 .button.primary:active{
   color:var(--white);
-  background-color:var(--accent-green);
+  background-color:var(--accent);
 }
 p{
   margin-bottom:10px;
 }
 p:last-child{
   margin-bottom:0;
+}
+.section-header{
+  margin-bottom:20px;
 }
 h1, h2, h3, h4, h5, h6{
   font-weight:bold;
