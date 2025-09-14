@@ -1,8 +1,9 @@
 {
-  "name": "canapi-website",
-  "version": "1.0.0",
+  "name": "terrabyte-11ty-template",
+  "version": "1.4.0",
   "main": "index.js",
   "scripts": {
+    "sync-version": "node scripts/sync-version.js",
     "build": "eleventy",
     "start": "eleventy --serve"
   },
@@ -14,6 +15,6 @@
     "@11ty/eleventy": "^3.1.1"
   },
   "dependencies": {
-    "cheerio": "^1.1.2"
+    "cheerio": "^1.1.0"
   }
 }

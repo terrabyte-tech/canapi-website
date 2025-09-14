@@ -158,24 +158,21 @@
 {# ########## #}
 
   <a name="top"></a>
-
-  <div class="page-container" data-au="flex-container flex-vertical flex-height">
+  {% if site.project == "Pixel Planet Today" %}
+    {% include "partials/ppt-header.njk" %}
+  {% else %}
     {% include "header.njk" %}
+  {% endif %}
 
-    <main>
-      {{ content | safe }}
-    </main>
+  <main>
+    {{ content | safe }}
+  </main>
 
-    <a name="footer"></a>
+  <a name="footer"></a>
+  {% if site.styleType == "pixel" %}
+    {% include "partials/pixel-footer.njk" %}
+  {% else %}
     {% include "partials/footer.njk" %}
-
-    {# decorative elements #}
-    <div class="canapi-brackets"></div>
-    <div class="canapi-code code-text">
-      <p>&lt;script type="text/javascript" data-canapi-init data-host="https://www.app.canapi.io" src="https://app.canapi.io/js/canapi.js"&gt;&lt;/script&gt;</p>
-      <p>&lt;div data-canapi-click-trigger data-key="XX-XXXX-XXXX"&gt;</p>
-    </div>
-  </div>
-
+  {% endif %}
 </body>
 </html>
