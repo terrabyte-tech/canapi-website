@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-{% include "inspector-splash.njk" %}
+{% include "partials/inspector-splash.njk" %}
 
 <!--------->
 <!-- metadata -->
@@ -138,7 +138,7 @@
 {# ########## #}
 
   {# svg container component #}
-  {% include "svgs.njk" %}
+  {% include "partials/svgs.njk" %}
 
 {# ########## #}
 {# sys ui #}
@@ -151,7 +151,7 @@
   {# handled as .eleventy.js transform #}
 
   {# noscript banner component #}
-  {% include "banners.njk" %}
+  {% include "partials/banners.njk" %}
 
 {# ########## #}
 {# page begins #}
@@ -167,7 +167,7 @@
     </main>
 
     <a name="footer"></a>
-    {% include "footer.njk" %}
+    {% include "partials/footer.njk" %}
 
     {# decorative elements #}
     <div class="canapi-brackets"></div>

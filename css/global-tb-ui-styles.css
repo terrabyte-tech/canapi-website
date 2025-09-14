@@ -20,6 +20,7 @@ a{
   cursor:pointer;
   user-select: none;
   transform:scale(1);
+  opacity:1;
   display:inline-block;
 }
 a.text-link{}
@@ -33,6 +34,7 @@ a.text-link{}
 a:active{
   transition:var(--ux-active-speed);
   transform:scale(0.95);
+  opacity:.6;
 }
 /* ------------- */
 
@@ -53,6 +55,7 @@ input[type='submit']{
   line-height:20px;
   font-size:14px;
   transform:scale(1);
+  opacity:1;
 }
 /* secondary button */
 button.secondary,
