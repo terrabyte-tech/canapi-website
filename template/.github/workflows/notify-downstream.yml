@@ -44,6 +44,8 @@ jobs:
         id: set-repos
         run: |
           echo "repos=terrabyte-tech/pixel-pegasus-website" >> $GITHUB_OUTPUT
+          echo "repos=terrabyte-tech/canapi-website" >> $GITHUB_OUTPUT
+          echo "repos=terrabyte-tech/terrabyte-11ty-starter" >> $GITHUB_OUTPUT
 
       - name: Trigger downstream updates
         run: |

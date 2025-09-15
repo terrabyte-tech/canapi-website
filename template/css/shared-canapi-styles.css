@@ -3,16 +3,10 @@
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 
 *{
-  /* margin:0;
-  padding:0; */
   font-size:inherit;
-  font-family:inherit;
   outline:none;
   -webkit-tap-highlight-color:transparent;
   -webkit-touch-callout:none;
-  background-position: center;
-  background-size:contain;
-  background-repeat: no-repeat;
 }
 
 
@@ -22,7 +16,7 @@
 /* css variables */
 :root{
   /* default avatar (before load) */
-  --avatarPath: linear-gradient(135deg, var(--accent-green), var(--accent-green));
+  --avatarPath: linear-gradient(135deg, var(--accent), var(--accent));
   /* --light: #ffffff; */
   /* replace with --white */
   --dark: #333841;
@@ -52,7 +46,7 @@
   --errorred-light-trans:#e0414120;
   /* fonts */
   --primary-font: 'Manrope', sans-serif;
-  --secondary-font: monospace;
+  --secondary-font: 'Manrope', sans-serif;
 }
 /* dark mode */
 body.dark,
@@ -97,6 +91,9 @@ body::-webkit-scrollbar-track{
   border-radius:10px;
   transition:.15s;
 }
+.page-container{
+  background:linear-gradient(135deg, #C1F0A3,#A0E1BA);
+}
 
 a{
   color:var(--accent);
@@ -108,9 +105,6 @@ a{
 }
 a:hover{
   color:var(--accent-green-semi-dark-trans);
-}
-a:active{
-  /* color:var(--accent); */
 }
 a.icon-link{
   font-size:1.2em;

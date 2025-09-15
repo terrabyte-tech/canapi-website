@@ -129,7 +129,7 @@ npm run build
 And run the local server in order to preview changes as you make them to site files.
 
 ```
-npx @11ty/eleventy --serve
+npm run start
 ``` 
 
 ### Updating Template
