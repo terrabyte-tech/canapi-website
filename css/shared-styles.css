@@ -1,20 +1,12 @@
+/* DEPRECATED for template/css/shared-canapi-styles.css */
 /* styles that are shared between all Canapi sites */
 
 *{
-  margin:0;
-  padding:0;
   font-size:inherit;
   font-family:inherit;
   outline:none;
   -webkit-tap-highlight-color:transparent;
   -webkit-touch-callout:none;
-  /* -webkit-user-select:none; */
-  /* -khtml-user-select:none; */
-  /* -moz-user-select:none; */
-  /* transition:.25s; */
-  background-position: center;
-  background-size:contain;
-  background-repeat: no-repeat;
 }
 
 
@@ -70,9 +62,6 @@ body.dark{
 
 
 /* html elements */
-html {
-  scroll-behavior: smooth;
-}
 body{
   /* put gradient on main page content? */
   /* background:linear-gradient(135deg, #C1F0A3,#A0E1BA); */
