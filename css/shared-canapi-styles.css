@@ -66,7 +66,6 @@ body{
   /* put gradient on main page content? */
   /* background:linear-gradient(135deg, #C1F0A3,#A0E1BA); */
   /* background-color:var(--background); */
-  /* font-family: 'Manrope', sans-serif; */
   /* color:var(--foreground); */
   font-size:14px;
   /* min-height:100vh; */
@@ -91,9 +90,7 @@ body::-webkit-scrollbar-track{
   border-radius:10px;
   transition:.15s;
 }
-.page-container{
-  background:linear-gradient(135deg, #C1F0A3,#A0E1BA);
-}
+/* .page-container{} */
 
 a{
   color:var(--accent);
@@ -215,7 +212,8 @@ td{
 /* page layouts */
 .page-container{
   position:relative;
-  overflow-x:hidden;
+  overflow:hidden;
+  /* overflow-x:hidden; */
   z-index:1;
 }
 
