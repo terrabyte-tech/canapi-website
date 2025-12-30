@@ -1,7 +1,15 @@
 {
+  "templateVersion": "1.4.0",
+  "project": "Canapi",
   "title": "Canapi",
-  "url": "https://canapi.io",
+  "url": "https://www.canapi.io",
   "author": "Terrabyte",
+  "brand": "Terrabyte",
   "language": "en-US",
-  "description": "Canapi is a marketplace and API suite that allows businesses and organizations to make automated environmental contributions."
+  "description": "Canapi is a marketplace and API suite that allows businesses and organizations to make automated environmental contributions.",
+  "accentColor": "#",
+  "backgroundColor": "#ffffff",
+  "foregroundColor": "#333333",
+  "schemaType": "Thing",
+  "fontsRel": "https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Manrope:wght@400;800&display=swap"
 }

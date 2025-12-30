@@ -1,31 +1,24 @@
-/*when javascript isn't enabled, toast message*/
-/* shared tb style */
-/* .toast-message{
-  z-index:900;
-  position:absolute;
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
-  background-color:#db2a2a;
-  color:white;
-  padding:10px 20px 12px 20px;
-  border-radius:4px;
-} */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/* site-specific styles */
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+/*  */
+/* Careful in template sync, this should be site specific */
+/*  */
 
-/* move to shared */
-.sr-only{
-  display:none;
+
+/* overwrite shared */
+.code-text{
+  font-family: 'Roboto Mono', Courier, monospace;
 }
-
-
-/* layout */
 body{
   /* overflow-y: scroll; */
   background: linear-gradient(135deg, transparent,var(--accent-green-light-trans));
 }
-.page-container{
-  overflow:hidden;
-}
+/* moved to shared */
+/* .page-container{
+  overflow-x:hidden;
+} */
+/* shared? */
 .padded-section{
   padding:30px;
 }
@@ -65,7 +58,7 @@ header .canapi-logo{
   background-color:var(--accent-green-trans);
 }
 .canapi-logo{
-  background-image: url('../img/canapi-logo.png');
+  background-image: url('/img/canapi-logo.png');
   max-width: 100%;
   width:350px;
   height: 150px;
@@ -90,7 +83,7 @@ main p{
 .canapi-brackets{
   user-select: none;
   pointer-events: none;
-  background-image: url('https://app.canapi.io/img/canapi-favicon.png');
+  background-image: url("/android-chrome-512x512.png");
   width:500px;
   height:800px;
   opacity:20%;
@@ -98,16 +91,13 @@ main p{
   top:100px;
   left:-200px;
 }
-.code-text{
-  font-family: 'Roboto Mono', Courier, monospace;
-}
 .canapi-code{
   font-size:18px;
   pointer-events: none;
   user-select: none;
   transform:rotate(90deg);
   transform-origin: top left;
-  color:var(--accent-green);
+  color:var(--accent);
   opacity:20%;
   position:absolute;
   width:400px;
