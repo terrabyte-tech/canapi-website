@@ -149,6 +149,13 @@ main p{
   }
 }
 
+/* newsletter section */
+#newsletter .col-container{}
+@media only screen and (max-width: 800px){
+  #newsletter .col-container{
+    flex-wrap:wrap;
+  }
+}
 
 /* footer */
 
