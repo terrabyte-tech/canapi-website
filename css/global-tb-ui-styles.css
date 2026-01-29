@@ -3,13 +3,29 @@
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 
 /* inputs */
+form{
+  max-width:300px;
+}
+.form-row{
+  margin-bottom:1rem;
+}
 input{
   font-family: inherit;
   font-size:inherit;
   color:inherit;
   background-color:transparent;
   border:none;
-  outline:none;
+  /* outline:none; */
+}
+input[type="text"],
+input[type="email"]{
+  width:100%;
+  padding:10px 0;
+  border-bottom:2px solid var(--accent);
+}
+input[type="text"]::placeholder,
+input[type="email"]::placeholder{
+  color:grey;
 }
 /* ------------- */
 
