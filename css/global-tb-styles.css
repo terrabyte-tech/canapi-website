@@ -70,6 +70,12 @@ hr{
   border:none;
   border-top:2px solid var(--accent);
 }
+a{
+  height:0;
+}
+a[href]{
+  height:auto;
+}
 /* ------------- */
 
 /* implementing shared variables (user interface) */
