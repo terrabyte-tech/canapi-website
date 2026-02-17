@@ -158,6 +158,9 @@ main p{
 }
 
 /* footer */
+footer .subsection{
+  margin-top:2rem;
+}
 
 
 /* +++++++++++++++++++++++++++++++++++++++++++ */
