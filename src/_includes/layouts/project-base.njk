@@ -1,0 +1,15 @@
+{% extends "layouts/base.njk" %}
+
+{% block header %}
+  {% include "partials/header.njk" %}
+{% endblock %}
+
+{% block footer %}
+  {% include "partials/footer.njk" %}
+  {# decorative elements #}
+  <div class="canapi-brackets"></div>
+  <div class="canapi-code code-text">
+    <p>&lt;script type="text/javascript" data-canapi-init data-host="https://www.app.canapi.io" src="https://app.canapi.io/js/canapi.js"&gt;&lt;/script&gt;</p>
+    <p>&lt;div data-canapi-click-trigger data-key="XX-XXXX-XXXX"&gt;</p>
+  </div>
+{% endblock %}

@@ -1,28 +1,24 @@
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 /* site-specific styles */
 /* +++++++++++++++++++++++++++++++++++++++++++ */
-/*  */
-/* Careful in template sync, this should be site specific */
-/*  */
 
+
+/* form styles */
+.form-row{
+  margin-bottom:1rem;
+}
+/* ------------- */
 
 /* overwrite shared */
-.code-text{
-  font-family: 'Roboto Mono', Courier, monospace;
-}
 body{
-  /* overflow-y: scroll; */
+  overflow-x:hidden;
   background: linear-gradient(135deg, transparent,var(--accent-green-light-trans));
 }
-/* moved to shared */
-/* .page-container{
-  overflow-x:hidden;
-} */
-/* shared? */
-.padded-section{
-  /* padding:30px; */
-  padding:3rem 30px;
+ul, ol{
+  padding-left:30px;
 }
+
+/* shared? */
 .full-section{
   min-height:100vh;
 }
@@ -38,9 +34,6 @@ header .canapi-logo{
   margin:0;
 }
 
-.nav-container{
-  
-}
 .nav-item-container{
   color:inherit;
   font-weight:normal;
@@ -49,7 +42,6 @@ header .canapi-logo{
   padding:8px 10px;
   border-radius:4px;
   font-size:18px;
-  /* transition:background-color .25s; */
 }
 .nav-item-container:last-child{
   margin-right:0px;
@@ -75,14 +67,10 @@ header .canapi-logo{
 
 
 /* hero */
-main{
-  /* background-color:var(--accent-green); */
-  /* padding:10px; */
-}
-main h6{
+#intro h6{
   margin-bottom:20px;
 }
-main p{
+#intro p{
   font-size:18px;
 }
 .anim-hero-text{
@@ -105,8 +93,7 @@ main p{
 }
 
 
-
-/* hero assets */
+/* style assets (brackets and code snippet) */
 .canapi-brackets{
   user-select: none;
   pointer-events: none;
@@ -173,9 +160,9 @@ footer .subsection{
   }
 }
 @media only screen and (max-width: 600px){
-  .padded-section{
+  /* .padded-section{
     padding:2rem 30px;
-  }
+  } */
   header .canapi-logo{
     display:none;
   }

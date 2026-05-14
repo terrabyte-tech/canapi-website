@@ -1,0 +1,187 @@
+---
+subtitle: Documentation
+layout: layouts/project-base.njk
+keywords: SaaS, how-to, docs, documentation, guide, help, walkthrough, official
+---
+
+<section class="padded-section">
+  <div class="page-title max-width">
+    <h1>Canapi Documentation</h1>
+  </div>
+</section>
+
+<section id="getting-started" class="padded-section" data-au="">
+  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+    <div class="section-title">
+        <h2>Getting Started</h2>
+    </div>
+    {# <div></div> #}
+    <p>Canapi lets you attach a charitable cause to any action in your app or website - a purchase, a signup, a completed task. When your users do something, Canapi logs a contribution toward a cause on your behalf. Your users see the impact. The contribution is tracked, billed to you monthly, and fulfilled by the cause's provider.</p>
+    <p>Getting up and running takes about 15 minutes and requires no changes to your existing infrastructure beyond a single API call.</p>
+
+    <h3>Before you begin, you will need:</h3>
+    <ul>
+      <li>A Canapi account - sign in through the <a href="/login">login page</a> or request a Beta account via <a href="mailto:info@terrabyte.eco?subject=Canapi Sign Up">email</a></li>
+      <li>An active Canapi instance configured with a cause and domain whitelist</li>
+      <li>An API key generated for that instance</li>
+    </ul>
+  </div>
+</section>
+
+<section id="api-key" class="padded-section">
+  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+    <div class="section-title">
+      <h2>Getting Your API Key</h2>
+    </div>
+    <p>Each Canapi instance has its own API key. Keys are generated from the instance page in your portal.</p>
+    <ol>
+      <li>Log in and navigate to <a href="https://app.canapi.io/instances">Instances</a></li>
+      <li>Select the instance you want to integrate</li>
+      <li>Under <strong>API Key</strong>, click <strong>Regenerate Key</strong> and confirm</li>
+      <li>Copy the key immediately - it is shown once and never stored</li>
+    </ol>
+    <div class="">
+      <p><strong>Keep your API key secret.</strong> It should never be committed to source control or exposed in client-side code. Store it as an environment variable on your server, or in your platform's secrets manager.</p>
+    </div>
+    <p>Your key will look like this:</p>
+    <pre><code>xxx_aLotOfNumb3rsAndCharact3rsThatL00ksScaryButIsJustSecur3</code></pre>
+  </div>
+</section>
+
+<section id="api-integration" class="padded-section">
+  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+    <div class="section-title">
+      <h2>Making a Contribution</h2>
+    </div>
+    <p>When something meaningful happens in your app - a completed order, a finished workout, a booked appointment - send a single <code>POST</code> request to the Canapi contribute endpoint. Canapi handles the rest.</p>
+
+    <h3>Endpoint</h3>
+    <pre><code>POST https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute</code></pre>
+
+    <h3>Authentication</h3>
+    <p>Pass your API key as a Bearer token in the <code>Authorization</code> header:</p>
+    <pre><code>Authorization: Bearer xxx_your_api_key_here</code></pre>
+
+    <h3>Domain whitelisting</h3>
+    <p>Canapi validates requests against the domain whitelist configured on your instance. The domain is read automatically from the <code>Origin</code> or <code>Referer</code> header of the incoming request - browsers set these automatically. For server-side requests, set the <code>Origin</code> header manually to the domain registered on your instance's domain whitelist.</p>
+
+    <h3>Example — JavaScript (browser or Node.js)</h3>
+    <pre><code>const response = await fetch(
+  'https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute',
+  {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer xxx_your_api_key_here',
+      'Content-Type': 'application/json',
+      'Origin': 'https://yourwebsite.com' // required for server-side requests
+    }
+  }
+);
+
+const data = await response.json();
+
+if (data.status === 'success') {
+  console.log(`Contribution logged - action ID: ${data.actionId}`);
+  console.log(`Cause: ${data.causeId}`);
+  // e.g. "Your order helped plant a tree!"
+}</code></pre>
+
+    <h3>Example — cURL</h3>
+    <pre><code>curl -X POST https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute \
+  -H "Authorization: Bearer xxx_your_api_key_here" \
+  -H "Origin: https://yourwebsite.com"</code></pre>
+
+    <h3>Where to place the call</h3>
+    <p>Call the endpoint at the moment the meaningful action is confirmed - after a payment is captured, after a form is successfully submitted, after an order is fulfilled. Avoid calling it speculatively (e.g. when a user adds something to a cart) since contributions are billed and logged as completed actions.</p>
+  </div>
+</section>
+
+<section id="response" class="padded-section">
+  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+    <div class="section-title">
+      <h2>Response Reference</h2>
+    </div>
+    <p>A successful contribution returns HTTP <code>200</code> with the following JSON body:</p>
+    <pre><code>{
+  "status": "success",
+  "actionId": "abc123xyz",
+  "causeId": "plant-a-tree"
+}</code></pre>
+    <table>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>status</code></td>
+          <td>string</td>
+          <td>Always <code>"success"</code> on a 200 response</td>
+        </tr>
+        <tr>
+          <td><code>actionId</code></td>
+          <td>string</td>
+          <td>Unique ID for this contribution. Keep this if you want to reference the action later or display it to your user</td>
+        </tr>
+        <tr>
+          <td><code>causeId</code></td>
+          <td>string</td>
+          <td>The cause tied to your instance - use this to show your users what their action supported (e.g. "Your order planted a tree")</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="errors" class="padded-section">
+  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+    <div class="section-title">
+      <h2>Error Reference</h2>
+    </div>
+    <p>All error responses return JSON with a single <code>error</code> field describing the problem.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Error</th>
+          <th>What it means</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>401</code></td>
+          <td>Missing API key</td>
+          <td>No <code>Authorization</code> header was sent</td>
+        </tr>
+        <tr>
+          <td><code>401</code></td>
+          <td>Invalid API key</td>
+          <td>The key doesn't match any active instance - check for typos or regenerate your key</td>
+        </tr>
+        <tr>
+          <td><code>403</code></td>
+          <td>Instance is not active</td>
+          <td>The instance tied to this key is inactive or archived</td>
+        </tr>
+        <tr>
+          <td><code>403</code></td>
+          <td>Domain not permitted</td>
+          <td>The request's origin doesn't match the domain whitelist on your instance</td>
+        </tr>
+        <tr>
+          <td><code>429</code></td>
+          <td>Rate limit exceeded</td>
+          <td>Your instance has hit its configured hourly contribution cap - the request was not logged as a billable action</td>
+        </tr>
+        <tr>
+          <td><code>500</code></td>
+          <td>Internal server error</td>
+          <td>Something went wrong on our end - try again, and contact support if the problem persists</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
