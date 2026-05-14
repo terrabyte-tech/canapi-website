@@ -1,77 +1,66 @@
-const cheerio = require("cheerio");
-const site = require("./_data/site.json");
+const ui = require("@terrabyte/web-ui");
+const { Environment, FileSystemLoader } = require("nunjucks");
+const path = require("path");
 
 module.exports = function (eleventyConfig) {
-  // copy site data
-  eleventyConfig.addPassthroughCopy('.htaccess');
-  // copy directories to the output
-  eleventyConfig.addPassthroughCopy('css');
-  eleventyConfig.addPassthroughCopy('js');
-  eleventyConfig.addPassthroughCopy('img');
-  // copy favicons
-  eleventyConfig.addPassthroughCopy('*.ico');
-  eleventyConfig.addPassthroughCopy('*.png');
 
-  // watch directories for changes
-  eleventyConfig.addWatchTarget('css');
-  eleventyConfig.addWatchTarget('js');
-  eleventyConfig.addWatchTarget('img');
+// Register filters + transforms
+  ui.registerFilters(eleventyConfig);
+  ui.registerTransforms(eleventyConfig);
 
-  // shortcodes
+// Configure Nunjucks
+  const loaderPaths = [
+    "src/_includes",
+    path.resolve(__dirname, "node_modules/@terrabyte/web-ui")
+  ];
+
+  const env = new Environment(new FileSystemLoader(loaderPaths), {
+    noCache: true
+  });
+
+// Inject project-level site data into the UI package
+  const siteData = require("./_data/site.json");
+  env.addGlobal("site", siteData);
+  env.addGlobal("siteData", siteData);
+  env.addGlobal("currentYear", new Date().getFullYear());
+  env.addGlobal("buildId", Date.now());
+
+// Allow UI package to access the same environment
+  if (typeof ui.setNunjucksEnvironment === "function") {
+    ui.setNunjucksEnvironment(env);
+  }
+
+  eleventyConfig.setLibrary("njk", env);
+
+// Passthroughs
+  eleventyConfig.addPassthroughCopy("src/.htaccess");
+  eleventyConfig.addPassthroughCopy("src/img");
+  eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/*.ico");
+  eleventyConfig.addPassthroughCopy("src/*.png");
+
+  // Terrabyte Web UI package assets
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/@terrabyte/web-ui/css": "css",
+    "node_modules/@terrabyte/web-ui/js": "js",
+    "node_modules/@terrabyte/web-ui/img": "img"
+  });
+
+// Watch targets
+  eleventyConfig.addWatchTarget("src/css");
+  eleventyConfig.addWatchTarget("src/js");
+  eleventyConfig.addWatchTarget("src/img");
+  eleventyConfig.addWatchTarget("node_modules/@terrabyte/web-ui");
+
+// Shortcodes
   eleventyConfig.addShortcode("currentYear", () => `${new Date().getFullYear()}`);
 
-  // page transforms and filters
-  // FILTER: split a string by a separator
-  eleventyConfig.addFilter("split", function(str, separator) {
-    if (!str) return [];
-    return str.split(separator);
-  });
-
-  // FILTER: Generate canonical URL
-  eleventyConfig.addFilter("canonicalUrl", function(pageUrl) {
-    // Remove trailing slash from site.url (if present, though it shouldn't be)
-    const base = site.url.replace(/\/$/, "");
-
-    // check if it's the homepage; if so, just return the base URL
-    if (!pageUrl || pageUrl === "/" || pageUrl === "/index.html") {
-      return base;
+// Directory structure
+  return {
+    dir: {
+      input: "src",
+      output: "_site"
     }
-    
-    // otherwise, ensure pageUrl starts with a slash
-    const rel = pageUrl.startsWith("/") ? pageUrl : `/${pageUrl}`;
-    return base + rel;
-  });
-
-  // TRANSFORM: create accessibility table of contents
-  eleventyConfig.addTransform("injectSrToc", function(content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
-      const $ = cheerio.load(content);
-
-      // Build TOC from sections
-      const sections = [];
-      $("section[id]").each((i, elem) => {
-        const id = $(elem).attr("id");
-        const title = id + " section";
-        sections.push({ id, title });
-      });
-
-      // Only inject if there are sections
-      if (sections.length) {
-        const tocHtml = `
-<nav class="sr-only sr-toc" aria-label="Table of Contents" role="navigation">
-  <h2>Page Table of Contents</h2>
-  <ul>
-    <li><a class="text-link" href="#top">Jump to content</a></li>
-    ${sections.map(s => `<li><a href="#${s.id}" class="text-link" tabindex="0">${s.title}</a></li>`).join("\n")}
-  </ul>
-</nav>
-        `;
-        // Insert TOC at the start of <body> on the page
-        $("body").prepend(tocHtml);
-        return $.html();
-      }
-    }
-    return content;
-  });
-
+  };
 };

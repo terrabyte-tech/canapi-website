@@ -6,6 +6,25 @@
 /*  */
 
 
+/* form styles */
+form{
+  max-width:300px;
+}
+.form-row{
+  margin-bottom:1rem;
+}
+input[type="text"],
+input[type="email"]{
+  width:100%;
+  padding:10px 0;
+  border-bottom:2px solid var(--accent);
+}
+input[type="text"]::placeholder,
+input[type="email"]::placeholder{
+  color:grey;
+}
+/* ------------- */
+
 /* overwrite shared */
 .code-text{
   font-family: 'Roboto Mono', Courier, monospace;
