@@ -18,43 +18,12 @@ ul, ol{
   padding-left:30px;
 }
 
-/* shared? */
-.full-section{
-  min-height:100vh;
-}
-.large-section{
-  min-height:60vh;
-}
-
 /* main nav */
 header .canapi-logo{
   width: 125px;
   height: 40px;
   background-position: top left;
   margin:0;
-}
-
-.nav-item-container{
-  color:inherit;
-  font-weight:normal;
-  opacity:1;
-  margin-right:20px;
-  padding:8px 10px;
-  border-radius:4px;
-  font-size:18px;
-}
-.nav-item-container:last-child{
-  margin-right:0px;
-}
-.nav-item-container:hover{
-  background-color:var(--accent-green-light-trans);
-  color:inherit;
-}
-.nav-item-container:active{
-  color:inherit;
-  opacity: 1;
-  transform: scale(.97);
-  background-color:var(--accent-green-trans);
 }
 .canapi-logo{
   background-image: url('/img/canapi-logo.png');
