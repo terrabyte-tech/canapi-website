@@ -19,12 +19,6 @@ ul, ol{
 }
 
 /* main nav */
-header .canapi-logo{
-  width: 125px;
-  height: 40px;
-  background-position: top left;
-  margin:0;
-}
 .canapi-logo{
   background-image: url('/img/canapi-logo.png');
   max-width: 100%;
