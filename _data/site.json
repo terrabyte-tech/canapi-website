@@ -1,4 +1,6 @@
 {
+  "terrabyteWebUI": "true",
+  "terrabyteStarterVersion": "1.0.0",
   "project": "Canapi",
   "title": "Canapi",
   "url": "https://www.canapi.io",
