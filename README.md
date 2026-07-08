@@ -1,7 +1,7 @@
 # canapi-website
 The official Canapi marketing site — [canapi.io](https://www.canapi.io)
 
-Informational website covering what Canapi is, what it does, and how to integrate it. Also links to documentation at [docs.canapi.io](https://docs.canapi.io).
+Informational website covering what Canapi is, what it does, and how to integrate it. Also links to documentation at [canapi.io/docs](https://canapi.io/docs).
 
 ## Stack
 
