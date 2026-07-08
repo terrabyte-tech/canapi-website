@@ -1,0 +1,12 @@
+[
+  { "action": "newsletter signup,", "contribution": "plant a tree." },
+  { "action": "product purchase,", "contribution": "remove a pound of ocean plastic." },
+  { "action": "app download,", "contribution": "protect an acre of wildlife habitat." },
+  { "action": "new referral,", "contribution": "restore a square foot of coral reef." },
+  { "action": "completed checkout,", "contribution": "offset a pound of carbon emissions." },
+  { "action": "5-star review,", "contribution": "fund a square meter of wetland restoration." },
+  { "action": "new account,", "contribution": "protect a square mile of habitat." },
+  { "action": "monthly subscription,", "contribution": "donate a dollar to a local nonprofit." },
+  { "action": "form submission,", "contribution": "clean up a square foot of coastline." },
+  { "action": "API call,", "contribution": "support a local eco-education program." }
+]
