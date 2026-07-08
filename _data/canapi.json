@@ -18,7 +18,6 @@
       "causeId": "YQ7R4uvMY3lGxzCZ4g4W",
       "styleId": "tampa-bay",
       "completedActionsCount": 0,
-      "name": "Seagrass Restoration & Protection",
       "providerName": "The Tampa Bay Estuary Program",
       "status": "active",
       "providerUrl": "https://tbep.org",
@@ -31,7 +30,8 @@
       "currency": "USD",
       "isTest": false,
       "description": "The Tampa Bay Estuary Program works within the Tampa Bay to restore and protect Florida seagrass. As a landmark habitat and keystone species in the bay, seagrass conservation indirectly protects the entire ecosystem.",
-      "actionUnitDescription": "square meter of seagrass being preserved for one year"
+      "actionUnitDescription": "square meter of seagrass being preserved for one year",
+      "name": "Seagrass Restoration & Protection"
     },
     {
       "causeId": "craneTrust",
@@ -39,7 +39,6 @@
       "currency": "USD",
       "styleId": "crane-trust",
       "providerName": "The Crane Trust",
-      "name": "Sandhill Crane Habitat Protection",
       "isTest": false,
       "locale": [
         "Nebraska",
@@ -50,7 +49,8 @@
       "completedActionsCount": 0,
       "createdAt": "2026-01-01T06:00:00.000Z",
       "description": "The Crane Trust protects habitat for Sandhill cranes and other wildlife along the Platte River and promotes environmental education in Central Nebraska.",
-      "actionUnitDescription": "square foot of Sandhill Crane habitat being protected for one year"
+      "actionUnitDescription": "square foot of Sandhill Crane habitat being protected for one year",
+      "name": "Sandhill Crane Habitat Protection"
     },
     {
       "causeId": "oceanPlasticCollection",
@@ -66,23 +66,23 @@
       "isTest": false,
       "completedActionsCount": 0,
       "createdAt": "2026-01-01T06:00:00.000Z",
-      "name": "Ocean Plastic Cleanup",
       "description": "The Ocean Cleanup is an organization that removes plastic and other waste from the world's oceans. Through scalable solutions, the organization has removed millions of kilograms from global waterways.",
-      "actionUnitDescription": "pound of ocean plastic being removed from the Pacific Ocean"
+      "actionUnitDescription": "pound of ocean plastic being removed from the Pacific Ocean",
+      "name": "Ocean Plastic Removal"
     },
     {
       "causeId": "vXDawM2i9NnJ9n3lc2jh",
       "providerName": "Green Omaha Coalition",
-      "name": "Environmental education in Omaha, NE",
       "createdAt": "2026-05-20T16:08:02.000Z",
       "completedActionsCount": 0,
       "currency": "USD",
       "description": "The Green Omaha Coalition hosts environmental education events and meetups to grow advocacy in the Omaha metro.",
       "isTest": false,
-      "providerURL": "https://greenomaha.org",
       "status": "active",
       "styleId": "green-omaha-coalition",
-      "actionUnitDescription": "seed packet is provided to an attendee at Earth Day Omaha"
+      "actionUnitDescription": "seed packet is provided to an attendee at Earth Day Omaha",
+      "providerUrl": "https://greenomaha.org",
+      "name": "Environmental Education in Omaha, NE"
     }
   ]
 }
