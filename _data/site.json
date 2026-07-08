@@ -8,6 +8,7 @@
   "brand": "Terrabyte",
   "language": "en-US",
   "description": "Canapi is a marketplace and API suite that allows businesses and organizations to make automated environmental contributions.",
+  "defaultTheme": "light",
   "accentColor": "#46af71",
   "backgroundColor": "#ffffff",
   "foregroundColor": "#333333",

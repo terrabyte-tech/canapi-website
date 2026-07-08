@@ -1,0 +1,88 @@
+{
+  "causes": [
+    {
+      "causeId": "MakvgVaQzCAEvmSlhl7l",
+      "styleId": "arbor-day",
+      "name": "Tree Planting",
+      "providerName": "Arbor Day Foundation",
+      "providerUrl": "https://www.arborday.org",
+      "isTest": false,
+      "status": "inactive",
+      "description": "The Arbor Day Foundation plants, nurtures, and celebrates trees across the United States.",
+      "completedActionsCount": 0,
+      "createdAt": "2026-05-10T21:37:29.000Z",
+      "currency": "USD",
+      "actionUnitDescription": "tree being planted in Arbor Day forests"
+    },
+    {
+      "causeId": "YQ7R4uvMY3lGxzCZ4g4W",
+      "styleId": "tampa-bay",
+      "completedActionsCount": 0,
+      "name": "Seagrass Restoration & Protection",
+      "providerName": "The Tampa Bay Estuary Program",
+      "status": "active",
+      "providerUrl": "https://tbep.org",
+      "locale": [
+        "Tampa Bay",
+        "Florida",
+        "United States of America"
+      ],
+      "createdAt": "2026-05-10T21:30:38.000Z",
+      "currency": "USD",
+      "isTest": false,
+      "description": "The Tampa Bay Estuary Program works within the Tampa Bay to restore and protect Florida seagrass. As a landmark habitat and keystone species in the bay, seagrass conservation indirectly protects the entire ecosystem.",
+      "actionUnitDescription": "square meter of seagrass being preserved for one year"
+    },
+    {
+      "causeId": "craneTrust",
+      "status": "inactive",
+      "currency": "USD",
+      "styleId": "crane-trust",
+      "providerName": "The Crane Trust",
+      "name": "Sandhill Crane Habitat Protection",
+      "isTest": false,
+      "locale": [
+        "Nebraska",
+        "United States of America",
+        "Platte River Valley"
+      ],
+      "providerUrl": "https://www.cranetrust.org",
+      "completedActionsCount": 0,
+      "createdAt": "2026-01-01T06:00:00.000Z",
+      "description": "The Crane Trust protects habitat for Sandhill cranes and other wildlife along the Platte River and promotes environmental education in Central Nebraska.",
+      "actionUnitDescription": "square foot of Sandhill Crane habitat being protected for one year"
+    },
+    {
+      "causeId": "oceanPlasticCollection",
+      "status": "inactive",
+      "currency": "USD",
+      "styleId": "ocean-cleanup",
+      "providerUrl": "https://theoceancleanup.com",
+      "providerName": "The Ocean Cleanup",
+      "locale": [
+        "Pacific Ocean",
+        "Pacific Garbage Patch"
+      ],
+      "isTest": false,
+      "completedActionsCount": 0,
+      "createdAt": "2026-01-01T06:00:00.000Z",
+      "name": "Ocean Plastic Cleanup",
+      "description": "The Ocean Cleanup is an organization that removes plastic and other waste from the world's oceans. Through scalable solutions, the organization has removed millions of kilograms from global waterways.",
+      "actionUnitDescription": "pound of ocean plastic being removed from the Pacific Ocean"
+    },
+    {
+      "causeId": "vXDawM2i9NnJ9n3lc2jh",
+      "providerName": "Green Omaha Coalition",
+      "name": "Environmental education in Omaha, NE",
+      "createdAt": "2026-05-20T16:08:02.000Z",
+      "completedActionsCount": 0,
+      "currency": "USD",
+      "description": "The Green Omaha Coalition hosts environmental education events and meetups to grow advocacy in the Omaha metro.",
+      "isTest": false,
+      "providerURL": "https://greenomaha.org",
+      "status": "active",
+      "styleId": "green-omaha-coalition",
+      "actionUnitDescription": "seed packet is provided to an attendee at Earth Day Omaha"
+    }
+  ]
+}

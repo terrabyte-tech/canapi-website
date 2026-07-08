@@ -2,11 +2,21 @@
 /* site-specific styles */
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 
-
-/* form styles */
-.form-row{
-  margin-bottom:1rem;
+/* overwrites */
+#intro h1{
+  font-size:4rem;
+  line-height:1.1;
+  min-height: 3lh;
 }
+@media only screen and (max-width: 800px){
+  #intro h1{
+    font-size:3rem;
+  }
+  .large-section{
+    min-height:80vh;
+  }
+}
+
 /* ------------- */
 
 /* overwrite shared */
@@ -39,19 +49,12 @@ ul, ol{
   color:var(--accent-green);
   position:relative;
   overflow-x:visible;
-  white-space: nowrap;
   display:inline-block;
+  transition: opacity var(--ux-speed), transform var(--ux-speed);
 }
-.anim-hero-text::after{
-  display: block;
-  /* content: ""; */
-  transition:var(--ux-speed);
-  position: absolute;
-  top: 1.5em;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--accent);
+.anim-hero-text.is-swapping{
+  opacity:0;
+  transform: translateY(0.3em);
 }
 
 
@@ -116,15 +119,7 @@ footer .subsection{
 
 
 /* responsive styles */
-@media only screen and (max-width: 800px){
-  .section-col{
-    margin-bottom:2rem;
-  }
-}
 @media only screen and (max-width: 600px){
-  /* .padded-section{
-    padding:2rem 30px;
-  } */
   header .canapi-logo{
     display:none;
   }
@@ -132,14 +127,10 @@ footer .subsection{
     max-width: 350px;
     width:100%;
     height: 150px;
-    /* margin-bottom: 20px; */
   }
   footer .max-width{
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
-  }
-  footer .button-container{
-    margin-top:10px;
   }
 }
