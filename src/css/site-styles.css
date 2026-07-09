@@ -3,6 +3,9 @@
 /* +++++++++++++++++++++++++++++++++++++++++++ */
 
 /* overwrites */
+.large-section{
+  height:60vh;
+}
 #intro h1{
   font-size:4rem;
   line-height:1.1;
@@ -13,6 +16,7 @@
     font-size:3rem;
   }
   .large-section{
+    height:80vh;
     min-height:80vh;
   }
 }
@@ -35,6 +39,71 @@ ul, ol{
   height: 150px;
   margin-bottom: 20px;
   background-position: center;
+}
+
+.nav-container{
+  position:relative;
+}
+
+/* mobile main nav */
+/* hide mobile nav menu icon/trigger by default (desktop) */
+.hamburger-menu-icon{
+  display:none;
+  width:25px;
+  height:25px;
+}
+
+@media only screen and (max-width: 800px){
+  /* header > [data-au~="flex-container"]{
+    flex-wrap:nowrap;
+  } */
+
+  /* show mobile nav menu icon/trigger */
+  .hamburger-menu-icon{
+    display:block;
+  }
+
+  /* hide main nav by default, off-screen above the viewport */
+  nav{
+    /* display:flex; */
+    flex-direction:column!important;
+    background-color:var(--background);
+    padding:20px;
+    padding-top:var(--space-large);
+    opacity:0;
+    pointer-events:none;
+    position:absolute;
+    top:-150px;
+    right:0px;
+    transition:opacity var(--ux-speed), top var(--ux-speed);
+    width:calc(100vw - 40px);
+    height:90vh;
+    z-index:102;
+  }
+  #main-nav .button-container{
+    width:100%;
+    flex-wrap:wrap;
+    margin-top:var(--space-medium);
+  }
+  #main-nav .button-container .button{
+    width:100%;
+  }
+
+  /* show main nav on click trigger — .show is toggled on the trigger by
+     site-scripts.js, and this relies on it being the nav's preceding
+     sibling in the markup */
+  .show + nav{
+    top:100%;
+    opacity:1;
+    pointer-events:all;
+  }
+  body:has(.hamburger-menu-icon.show){
+    overflow:hidden;
+  }
+
+  .nav-item-container{
+    width:100%;
+  }
 }
 
 

@@ -1,5 +1,7 @@
 node_modules
 _site
 
+claude/
+.claude/
 *firebase-adminsdk*.json
 secrets/

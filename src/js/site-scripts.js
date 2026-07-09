@@ -10,6 +10,34 @@ window.addEventListener("load", function(){
 
   // custom script here
 
+  // ── Mobile nav toggle ─────────────────────────────────────────────────────
+  // Matches the pattern used across Terrabyte projects (see terrabyte-website):
+  // toggling .show on the trigger drives the nav's visibility via a CSS
+  // sibling selector, so this stays this minimal on purpose.
+  (function initNavToggle() {
+    const navTrigger = document.querySelector("[data-nav-toggle]");
+    const nav = document.querySelector("[data-nav]");
+    if (!navTrigger) return;
+
+    navTrigger.addEventListener("click", function () {
+      this.classList.toggle("show");
+      const expanded = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", String(!expanded));
+    });
+
+    // Close the menu on any nav link click — same-page anchor links (e.g.
+    // "/#beta") don't trigger a full page navigation, so nothing else would
+    // ever tell the menu to close.
+    if (nav) {
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navTrigger.classList.remove("show");
+          navTrigger.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  })();
+
   // ── Animated hero text ────────────────────────────────────────────────────
   // Cycles the "For every [action], you [contribution]." hero line through
   // window.canapiUseCases (see _data/useCases.json). Index 0 is already
