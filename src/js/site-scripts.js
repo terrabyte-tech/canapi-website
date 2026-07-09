@@ -10,6 +10,21 @@ window.addEventListener("load", function(){
 
   // custom script here
 
+  // ── Mobile nav toggle ─────────────────────────────────────────────────────
+  // Matches the pattern used across Terrabyte projects (see terrabyte-website):
+  // toggling .show on the trigger drives the nav's visibility via a CSS
+  // sibling selector, so this stays this minimal on purpose.
+  (function initNavToggle() {
+    const navTrigger = document.querySelector("[data-nav-toggle]");
+    if (!navTrigger) return;
+
+    navTrigger.addEventListener("click", function () {
+      this.classList.toggle("show");
+      const expanded = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", String(!expanded));
+    });
+  })();
+
   // ── Animated hero text ────────────────────────────────────────────────────
   // Cycles the "For every [action], you [contribution]." hero line through
   // window.canapiUseCases (see _data/useCases.json). Index 0 is already

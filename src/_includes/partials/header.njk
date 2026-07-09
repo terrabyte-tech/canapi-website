@@ -4,12 +4,12 @@
       <a href="https://canapi.io" class="canapi-logo" data-au="set-width" aria-label="Canapi Home"></a>
     </div>
     <div class="nav-container" data-au="set-width flex-container align-center">
-      {# <div class="hamburger-menu-icon clickable" data-nav-toggle>
+      <div class="hamburger-menu-icon clickable" data-nav-toggle role="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
         <svg viewBox="0 0 50 50">
           <use href="#hamburger-menu-icon"/>
         </svg>
-      </div> #}
-      <nav data-nav data-au="flex-container align-center xsmall-gap">
+      </div>
+      <nav id="main-nav" data-nav data-au="flex-container align-center small-gap">
         <a class="nav-item-container" href="/">
           <span>Home</span>
         </a>
@@ -20,7 +20,7 @@
           <span>Docs</span>
         </a>
         <div class="button-container" data-au="flex-container align-center xsmall-gap">
-          <a class="button" href="/#beta">Get Updates</a>
+          <a class="button" href="/#beta">Request Beta Access</a>
           <a class="button primary" href="https://app.canapi.io">Login</a>
         </div>
       </nav>
