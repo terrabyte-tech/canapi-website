@@ -16,6 +16,7 @@ window.addEventListener("load", function(){
   // sibling selector, so this stays this minimal on purpose.
   (function initNavToggle() {
     const navTrigger = document.querySelector("[data-nav-toggle]");
+    const nav = document.querySelector("[data-nav]");
     if (!navTrigger) return;
 
     navTrigger.addEventListener("click", function () {
@@ -23,6 +24,18 @@ window.addEventListener("load", function(){
       const expanded = this.getAttribute("aria-expanded") === "true";
       this.setAttribute("aria-expanded", String(!expanded));
     });
+
+    // Close the menu on any nav link click — same-page anchor links (e.g.
+    // "/#beta") don't trigger a full page navigation, so nothing else would
+    // ever tell the menu to close.
+    if (nav) {
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navTrigger.classList.remove("show");
+          navTrigger.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
   })();
 
   // ── Animated hero text ────────────────────────────────────────────────────
