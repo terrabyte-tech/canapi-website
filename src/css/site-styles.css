@@ -34,11 +34,6 @@ ul, ol{
 /* main nav */
 .canapi-logo{
   background-image: url('/img/canapi-logo.png');
-  max-width: 100%;
-  width:350px;
-  height: 150px;
-  margin-bottom: 20px;
-  background-position: center;
 }
 
 .nav-container{
@@ -93,7 +88,7 @@ ul, ol{
      site-scripts.js, and this relies on it being the nav's preceding
      sibling in the markup */
   .show + nav{
-    top:100%;
+    top:calc(100% + 20px);
     opacity:1;
     pointer-events:all;
   }
@@ -108,6 +103,9 @@ ul, ol{
 
 
 /* hero */
+#intro{
+  padding-top:15vh;
+}
 #intro h6{
   margin-bottom:20px;
 }
@@ -189,14 +187,6 @@ footer .subsection{
 
 /* responsive styles */
 @media only screen and (max-width: 600px){
-  header .canapi-logo{
-    display:none;
-  }
-  .canapi-logo{
-    max-width: 350px;
-    width:100%;
-    height: 150px;
-  }
   footer .max-width{
     flex-wrap: wrap;
     justify-content: center;
