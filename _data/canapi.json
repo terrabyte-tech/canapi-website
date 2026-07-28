@@ -1,6 +1,20 @@
 {
   "causes": [
     {
+      "causeId": "BTrbynnnGji69ZWq5wEg",
+      "actionUnitDescription": "tree being planted in a U.S. National Forest that needs it most",
+      "completedActionsCount": 0,
+      "createdAt": "2026-07-23T05:00:00.000Z",
+      "currency": "USD",
+      "description": "The U.S. Forest Service, an agency of the U.S. Department of Agriculture, is the nation's foremost federal forestry organization. Employees manage hundreds of national forests and grasslands across 43 states, the Virgin Islands, and Puerto Rico.",
+      "isTest": false,
+      "providerName": "U.S. Forest Service",
+      "status": "active",
+      "styleId": "us-forest-service",
+      "name": "Tree Planting",
+      "providerUrl": "https://fs.usda.gov"
+    },
+    {
       "causeId": "MakvgVaQzCAEvmSlhl7l",
       "styleId": "arbor-day",
       "name": "Tree Planting",
@@ -15,11 +29,28 @@
       "actionUnitDescription": "tree being planted in Arbor Day forests"
     },
     {
+      "causeId": "VaJWQ0u5pyEMtAJEsX1Q",
+      "actionUnitDescription": "pound of plastic being removed from the ocean",
+      "status": "active",
+      "completedActionsCount": 0,
+      "createdAt": "2026-07-22T05:00:00.000Z",
+      "currency": "USD",
+      "description": "Tidey Ocean is a nonprofit that works with volunteers across the United States to remove plastic from our beaches.",
+      "isTest": false,
+      "name": "Ocean Plastic Removal",
+      "providerName": "Tidey Ocean",
+      "styleId": "ocean-cleanup",
+      "locale": [
+        "United States of America",
+        "Pacific Ocean",
+        "Guatemala"
+      ],
+      "providerUrl": "https://tideyocean.org"
+    },
+    {
       "causeId": "YQ7R4uvMY3lGxzCZ4g4W",
       "styleId": "tampa-bay",
-      "completedActionsCount": 0,
       "providerName": "The Tampa Bay Estuary Program",
-      "status": "active",
       "providerUrl": "https://tbep.org",
       "locale": [
         "Tampa Bay",
@@ -31,7 +62,21 @@
       "isTest": false,
       "description": "The Tampa Bay Estuary Program works within the Tampa Bay to restore and protect Florida seagrass. As a landmark habitat and keystone species in the bay, seagrass conservation indirectly protects the entire ecosystem.",
       "actionUnitDescription": "square meter of seagrass being preserved for one year",
-      "name": "Seagrass Restoration & Protection"
+      "name": "Seagrass Restoration & Protection",
+      "completedActionsCount": 2,
+      "status": "inactive"
+    },
+    {
+      "causeId": "bvKm40Nl3rS15R4fprhW",
+      "providerUrl": "https://onetreeplanted.org",
+      "currency": "USD",
+      "isTest": false,
+      "name": "Tree Planting",
+      "providerName": "One Tree Planted",
+      "status": "active",
+      "styleId": "one-tree-planted",
+      "description": "One Tree Planted is a non-profit organization focused on global reforestation. Their projects focus on restoring priority landscapes around the world - places where forests can make the biggest difference for nature and communities.",
+      "actionUnitDescription": "tree being planted in an ecologically important forest"
     },
     {
       "causeId": "craneTrust",

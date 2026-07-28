@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@phosphor-icons/web':
+        specifier: ^2.1.2
+        version: 2.1.2
       '@terrabyte/web-ui':
         specifier: github:terrabyte-tech/terrabyte-web-ui
-        version: https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/bf0608a3789bcae6b272927a17cac35888fa538d
+        version: https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/1d546b5076f354c6b273de529b4151667c77857b
       cheerio:
         specifier: ^1.1.2
         version: 1.2.0
@@ -139,6 +142,9 @@ packages:
     resolution: {integrity: sha512-gLyJlPHPZYdAk1JENA9LeHejZe1Ti77/pTeFm/nMXmQH/HFZlcS/O2XJB+L8fkbrNSqhdtlvjBVjxwUYanNH5Q==}
     engines: {node: '>=8.0.0'}
 
+  '@phosphor-icons/web@2.1.2':
+    resolution: {integrity: sha512-rPAR9o/bEcp4Cw4DEeZHXf+nlGCMNGkNDRizYHM47NLxz9vvEHp/Tt6FMK1NcWadzw/pFDPnRBGi/ofRya958A==}
+
   '@protobufjs/aspromise@1.1.2':
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
 
@@ -174,9 +180,9 @@ packages:
     resolution: {integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==}
     engines: {node: '>=12'}
 
-  '@terrabyte/web-ui@https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/bf0608a3789bcae6b272927a17cac35888fa538d':
-    resolution: {tarball: https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/bf0608a3789bcae6b272927a17cac35888fa538d}
-    version: 1.3.8
+  '@terrabyte/web-ui@https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/1d546b5076f354c6b273de529b4151667c77857b':
+    resolution: {tarball: https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/1d546b5076f354c6b273de529b4151667c77857b}
+    version: 1.3.12
 
   '@tootallnate/once@2.0.1':
     resolution: {integrity: sha512-HqmEUIGRJ5fSXchkVgR5F7qn48bDBzv0kWj/Kfu5e6uci4UlEeng4331LnBkWffb++Ei3FOVLxo8JJWMFBDMeQ==}
@@ -1434,6 +1440,8 @@ snapshots:
   '@opentelemetry/api@1.9.1':
     optional: true
 
+  '@phosphor-icons/web@2.1.2': {}
+
   '@protobufjs/aspromise@1.1.2':
     optional: true
 
@@ -1472,7 +1480,7 @@ snapshots:
     dependencies:
       escape-string-regexp: 5.0.0
 
-  '@terrabyte/web-ui@https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/bf0608a3789bcae6b272927a17cac35888fa538d': {}
+  '@terrabyte/web-ui@https://codeload.github.com/terrabyte-tech/terrabyte-web-ui/tar.gz/1d546b5076f354c6b273de529b4151667c77857b': {}
 
   '@tootallnate/once@2.0.1':
     optional: true
