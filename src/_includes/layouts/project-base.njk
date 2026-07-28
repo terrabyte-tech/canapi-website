@@ -1,5 +1,10 @@
 {% extends "layouts/base.njk" %}
 
+{% block additionalSiteStyles %}
+  <link rel="stylesheet" href="/phosphor/regular/style.css">
+  <link rel="stylesheet" href="/phosphor/bold/style.css">
+{% endblock %}
+
 {% block header %}
   {% include "partials/header.njk" %}
 {% endblock %}
