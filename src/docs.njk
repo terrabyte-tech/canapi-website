@@ -23,8 +23,8 @@ pageType: docs
     <h3>Before you begin, you will need:</h3>
     <ul>
       <li>A Canapi account - sign in through the <a href="https://app.canapi.io">login page</a> or request a Beta account via <a href="mailto:info@terrabyte.eco?subject=Canapi Sign Up">email</a></li>
-      <li>An active Canapi instance configured with a cause and domain whitelist</li>
-      <li>An API key generated for that instance</li>
+      <li>An active Canapi instance configured with a cause</li>
+      <li>An API key and signing secret generated for that instance</li>
     </ul>
   </div>
 </section>
@@ -32,20 +32,21 @@ pageType: docs
 <section id="api-key" class="padded-section">
   <div class="max-width" data-au="flex-container flex-vertical small-gap">
     <div class="section-title">
-      <h2>Getting Your API Key</h2>
+      <h2>Getting Your API Key and Signing Secret</h2>
     </div>
-    <p>Each Canapi instance has its own API key. Keys are generated from the instance page in your portal.</p>
+    <p>Each Canapi instance has its own API key and signing secret, generated together. Both are generated from the instance page in your portal.</p>
     <ol>
       <li>Log in and navigate to <a href="https://app.canapi.io/instances">Instances</a></li>
       <li>Select the instance you want to integrate</li>
       <li>Under <strong>API Key</strong>, click <strong>Regenerate Key</strong> and confirm</li>
-      <li>Copy the key immediately - it is shown once and never stored</li>
+      <li>Copy both values immediately - they are shown once and never stored</li>
     </ol>
     <div class="">
-      <p><strong>Keep your API key secret.</strong> It should never be committed to source control or exposed in client-side code. Store it as an environment variable on your server, or in your platform's secrets manager.</p>
+      <p><strong>Keep your API key and signing secret secret.</strong> Neither should ever be committed to source control or exposed in client-side code. Store both as environment variables on your server, or in your platform's secrets manager.</p>
     </div>
     <p>Your key will look like this:</p>
     <pre><code>xxx_aLotOfNumb3rsAndCharact3rsThatL00ksScaryButIsJustSecur3</code></pre>
+    <p>Your signing secret is a separate value shown alongside it at the same time.</p>
   </div>
 </section>
 
@@ -63,18 +64,38 @@ pageType: docs
     <p>Pass your API key as a Bearer token in the <code>Authorization</code> header:</p>
     <pre><code>Authorization: Bearer xxx_your_api_key_here</code></pre>
 
-    <h3>Domain whitelisting</h3>
-    <p>Canapi validates requests against the domain whitelist configured on your instance. The domain is read automatically from the <code>Origin</code> or <code>Referer</code> header of the incoming request - browsers set these automatically. For server-side requests, set the <code>Origin</code> header manually to the domain registered on your instance's domain whitelist.</p>
+    <h3>Request signing</h3>
+    <p>Every request must also be signed using your instance's signing secret, so that a leaked API key alone isn't enough to make a request on your behalf. Send three additional headers:</p>
+    <ul>
+      <li><code>X-Canapi-Timestamp</code> - the current Unix timestamp, in seconds</li>
+      <li><code>X-Canapi-Idempotency-Key</code> - a string unique to this specific contribution. Reusing one rejects the request as a duplicate rather than logging it again</li>
+      <li><code>X-Canapi-Signature</code> - <code>HMAC-SHA256</code> of the string <code>{timestamp}.{idempotencyKey}</code>, using your signing secret as the HMAC key, hex-encoded</li>
+    </ul>
+    <p>Requests with a timestamp more than 5 minutes old (or in the future) are rejected, so make sure your server's clock is accurate.</p>
+    <p><strong>Choosing your idempotency key matters.</strong> A random value (e.g. a UUID) on every call only protects against someone else intercepting and replaying your request - it does nothing to stop <em>your own</em> code from accidentally billing the same real-world event twice (a retry, a double-click, a webhook firing more than once). To protect against that too, derive the key from something stable and unique to the event itself - your internal order ID, transaction ID, or similar - so that if your own code calls <code>contribute</code> twice for the same order, the second call is rejected as a duplicate instead of logging (and billing) a second contribution.</p>
 
-    <h3>Example — JavaScript (browser or Node.js)</h3>
-    <pre><code>const response = await fetch(
+    <h3>Example — JavaScript (Node.js)</h3>
+    <pre><code>import crypto from 'crypto';
+
+const timestamp = Math.floor(Date.now() / 1000).toString();
+// Use your own stable order/transaction ID here (not a random UUID) so that
+// if this code ever runs twice for the same order, the second call is
+// rejected as a duplicate instead of billing the order a second time.
+const idempotencyKey = yourOrderId;
+const signature = crypto
+  .createHmac('sha256', process.env.CANAPI_SIGNING_SECRET)
+  .update(`${timestamp}.${idempotencyKey}`)
+  .digest('hex');
+
+const response = await fetch(
   'https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute',
   {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer xxx_your_api_key_here',
-      'Content-Type': 'application/json',
-      'Origin': 'https://yourwebsite.com' // required for server-side requests
+      'Authorization': `Bearer ${process.env.CANAPI_API_KEY}`,
+      'X-Canapi-Timestamp': timestamp,
+      'X-Canapi-Idempotency-Key': idempotencyKey,
+      'X-Canapi-Signature': signature
     }
   }
 );
@@ -88,12 +109,26 @@ if (data.status === 'success') {
 }</code></pre>
 
     <h3>Example — cURL</h3>
-    <pre><code>curl -X POST https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute \
-  -H "Authorization: Bearer xxx_your_api_key_here" \
-  -H "Origin: https://yourwebsite.com"</code></pre>
+    <pre><code>TIMESTAMP=$(date +%s)
+# Use your own stable order/transaction ID here (not a random value) so a
+# retried call for the same order gets rejected as a duplicate, not re-billed.
+IDEMPOTENCY_KEY="your-order-id"
+SIGNATURE=$(printf "%s.%s" "$TIMESTAMP" "$IDEMPOTENCY_KEY" | openssl dgst -sha256 -hmac "$CANAPI_SIGNING_SECRET" | sed 's/^.* //')
+
+curl -X POST https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute \
+  -H "Authorization: Bearer $CANAPI_API_KEY" \
+  -H "X-Canapi-Timestamp: $TIMESTAMP" \
+  -H "X-Canapi-Idempotency-Key: $IDEMPOTENCY_KEY" \
+  -H "X-Canapi-Signature: $SIGNATURE"</code></pre>
 
     <h3>Where to place the call</h3>
-    <p>Call the endpoint at the moment the meaningful action is confirmed - after a payment is captured, after a form is successfully submitted, after an order is fulfilled. Avoid calling it speculatively (e.g. when a user adds something to a cart) since contributions are billed and logged as completed actions.</p>
+    <p>Call the endpoint at the moment the meaningful action is confirmed - after a payment is captured, after a form is successfully submitted, after an order is fulfilled. Avoid calling it speculatively (e.g. when a user adds something to a cart) since contributions are billed and logged as completed actions. Always call it from your server, never from client-side code - your API key and signing secret must never be exposed to a browser.</p>
+
+    <h3>Labeling by domain (optional)</h3>
+    <p>Your instance settings include an optional "Allowed Domains" list. This is for your own labeling and analytics only - it has no effect on which requests are accepted. Every contribution's authenticity comes from the API key and signature, not from where it says it's calling from.</p>
+
+    <h3>Rate limiting</h3>
+    <p>Each instance can optionally be configured with an hourly contribution cap in its dashboard settings. Requests that would exceed it return <code>429</code> and are not logged as billable actions - they don't count against the cap themselves, so once the hourly window resets, contributions resume normally without any action needed on your part.</p>
   </div>
 </section>
 
@@ -159,6 +194,11 @@ if (data.status === 'success') {
         </tr>
         <tr>
           <td><code>401</code></td>
+          <td>Missing signature headers</td>
+          <td>One or more of <code>X-Canapi-Timestamp</code>, <code>X-Canapi-Idempotency-Key</code>, or <code>X-Canapi-Signature</code> was not sent</td>
+        </tr>
+        <tr>
+          <td><code>401</code></td>
           <td>Invalid API key</td>
           <td>The key doesn't match any active instance - check for typos or regenerate your key</td>
         </tr>
@@ -168,9 +208,19 @@ if (data.status === 'success') {
           <td>The instance tied to this key is inactive or archived</td>
         </tr>
         <tr>
-          <td><code>403</code></td>
-          <td>Domain not permitted</td>
-          <td>The request's origin doesn't match the domain whitelist on your instance</td>
+          <td><code>401</code></td>
+          <td>Invalid or expired timestamp</td>
+          <td><code>X-Canapi-Timestamp</code> is more than 5 minutes old or in the future - check your server's clock</td>
+        </tr>
+        <tr>
+          <td><code>401</code></td>
+          <td>Invalid signature</td>
+          <td><code>X-Canapi-Signature</code> doesn't match what we computed - check you're signing <code>{timestamp}.{idempotencyKey}</code> with the correct signing secret</td>
+        </tr>
+        <tr>
+          <td><code>409</code></td>
+          <td>Duplicate request</td>
+          <td><code>X-Canapi-Idempotency-Key</code> was already used - the request was not logged again as a billable action</td>
         </tr>
         <tr>
           <td><code>429</code></td>

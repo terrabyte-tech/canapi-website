@@ -34,11 +34,9 @@ module.exports = function (eleventyConfig) {
 
 // Passthroughs
   eleventyConfig.addPassthroughCopy("src/.htaccess");
-  eleventyConfig.addPassthroughCopy("src/img");
-  eleventyConfig.addPassthroughCopy("src/js");
-  eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/*.ico");
-  eleventyConfig.addPassthroughCopy("src/*.png");
+  eleventyConfig.addPassthroughCopy("src/**/*.css");
+  eleventyConfig.addPassthroughCopy("src/**/*.js");
+  eleventyConfig.addPassthroughCopy("src/**/*.{png,jpg,jpeg,gif,svg,webp,ico,woff,woff2}");
 
   // Terrabyte Web UI package assets
   eleventyConfig.addPassthroughCopy({
@@ -47,10 +45,15 @@ module.exports = function (eleventyConfig) {
     "node_modules/@terrabyte/web-ui/img": "img"
   });
 
+  // Phosphor Icons
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/@phosphor-icons/web/src": "phosphor"
+  });
+
 // Watch targets
-  eleventyConfig.addWatchTarget("src/css");
-  eleventyConfig.addWatchTarget("src/js");
-  eleventyConfig.addWatchTarget("src/img");
+  eleventyConfig.addWatchTarget("src/**/*.css");
+  eleventyConfig.addWatchTarget("src/**/*.js");
+  eleventyConfig.addWatchTarget("src/**/*.{png,jpg,jpeg,gif,svg,webp,ico,woff,woff2}");
   eleventyConfig.addWatchTarget("node_modules/@terrabyte/web-ui");
 
 // Shortcodes
