@@ -99,7 +99,7 @@ keywords: canapi, terrabyte, automatic, api, software, b2b, green, tech, technol
         {% for item in canapi.causes %}
           <a class="solid-section section-card ad-card {{ item.styleId }}" data-au="set-width flex-container flex-vertical justify-right" href="{{ item.providerUrl }}" target="_blank" rel="noopener noreferrer" {% if item.status == 'inactive' %}data-disabled{% endif %}>
             {% if item.status == 'inactive' %}
-              <div class="inactive-icon icon-container" data-au="flex-container all-center" data-tooltip="Donations to this cause are not yet fully supported." data-tooltip-force-right>
+              <div class="inactive-icon icon-container" data-au="flex-container all-center" data-tooltip="Contributions to this cause are not yet fully supported." data-tooltip-force-right>
                 <i class="ph ph-prohibit"></i>
               </div>
             {% endif %}
