@@ -23,6 +23,7 @@ pageType: docs
     <h3>Before you begin, you will need:</h3>
     <ul>
       <li>A Canapi account - sign in through the <a href="https://app.canapi.io">login page</a> or request a Beta account via <a href="mailto:info@terrabyte.eco?subject=Canapi Sign Up">email</a></li>
+      <li>A billing account with a card on file, set up under <a href="https://app.canapi.io/settings#billing-settings">Settings</a> - contributions cannot be logged until this is active</li>
       <li>An active Canapi instance configured with a cause</li>
       <li>An API key and signing secret generated for that instance</li>
     </ul>
@@ -58,7 +59,7 @@ pageType: docs
     <p>When something meaningful happens in your app - a completed order, a finished workout, a booked appointment - send a single <code>POST</code> request to the Canapi contribute endpoint. Canapi handles the rest.</p>
 
     <h3>Endpoint</h3>
-    <pre><code>POST https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute</code></pre>
+    <pre><code>POST https://api.canapi.io/contribute</code></pre>
 
     <h3>Authentication</h3>
     <p>Pass your API key as a Bearer token in the <code>Authorization</code> header:</p>
@@ -88,7 +89,7 @@ const signature = crypto
   .digest('hex');
 
 const response = await fetch(
-  'https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute',
+  'https://api.canapi.io/contribute',
   {
     method: 'POST',
     headers: {
@@ -115,7 +116,7 @@ if (data.status === 'success') {
 IDEMPOTENCY_KEY="your-order-id"
 SIGNATURE=$(printf "%s.%s" "$TIMESTAMP" "$IDEMPOTENCY_KEY" | openssl dgst -sha256 -hmac "$CANAPI_SIGNING_SECRET" | sed 's/^.* //')
 
-curl -X POST https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute \
+curl -X POST https://api.canapi.io/contribute \
   -H "Authorization: Bearer $CANAPI_API_KEY" \
   -H "X-Canapi-Timestamp: $TIMESTAMP" \
   -H "X-Canapi-Idempotency-Key: $IDEMPOTENCY_KEY" \
@@ -206,6 +207,11 @@ curl -X POST https://us-central1-terrabyte-canapi.cloudfunctions.net/contribute 
           <td><code>403</code></td>
           <td>Instance is not active</td>
           <td>The instance tied to this key is inactive or archived</td>
+        </tr>
+        <tr>
+          <td><code>402</code></td>
+          <td>Billing is not set up for this account</td>
+          <td>The account that owns this instance doesn't have an active billing account - add a card under <a href="https://app.canapi.io/settings#billing-settings">Settings</a> before contributions can be logged</td>
         </tr>
         <tr>
           <td><code>401</code></td>
