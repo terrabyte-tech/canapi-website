@@ -17,7 +17,7 @@ pageType: docs
         <h2>Getting Started</h2>
     </div>
     {# <div></div> #}
-    <p>Canapi lets you attach a charitable cause to any action in your app or website - a purchase, a signup, a completed task. When your users do something, Canapi logs a contribution toward a cause on your behalf. Your users see the impact. The contribution is tracked, billed to you monthly, and fulfilled by the cause's provider.</p>
+    <p>Canapi lets you attach a charitable cause to any action in your app or website - a purchase, a signup, a completed task. When your users do something, Canapi funds a contribution to an environmental cause. Your users see the impact. The contribution is tracked, billed, and fulfilled by Canapi with the help of our providers.</p>
     <p>Getting up and running takes about 15 minutes and requires no changes to your existing infrastructure beyond a single API call.</p>
 
     <h3>Before you begin, you will need:</h3>
@@ -106,7 +106,7 @@ const data = await response.json();
 if (data.status === 'success') {
   console.log(`Contribution logged - action ID: ${data.actionId}`);
   console.log(`Cause: ${data.causeId}`);
-  // e.g. "Your order helped plant a tree!"
+  // e.g. "Your order helped plant a tree with Canapi!"
 }</code></pre>
 
     <h3>Example — cURL</h3>
@@ -156,17 +156,17 @@ curl -X POST https://api.canapi.io/contribute \
         <tr>
           <td><code>status</code></td>
           <td>string</td>
-          <td>Always <code>"success"</code> on a 200 response</td>
+          <td>Always <code>"success"</code> on a 200 response.</td>
         </tr>
         <tr>
           <td><code>actionId</code></td>
           <td>string</td>
-          <td>Unique ID for this contribution. Keep this if you want to reference the action later or display it to your user</td>
+          <td>Unique ID for this contribution. Keep this if you want to reference the action later or display it to your user.</td>
         </tr>
         <tr>
           <td><code>causeId</code></td>
           <td>string</td>
-          <td>The cause tied to your instance - use this to show your users what their action supported (e.g. "Your order planted a tree")</td>
+          <td>The cause supported by your instance - use this to show your users what their action supported.</td>
         </tr>
       </tbody>
     </table>
