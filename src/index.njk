@@ -85,7 +85,7 @@ keywords: canapi, terrabyte, automatic, api, software, b2b, green, tech, technol
   </div>
 </section>
 
-<section id="causes" class="padded-section">
+{# <section id="causes" class="padded-section">
   <div class="max-width" data-au="flex-container flex-vertical medium-gap">
     <div class="section-header">
       <h2>Causes you can support</h2>
@@ -106,14 +106,14 @@ keywords: canapi, terrabyte, automatic, api, software, b2b, green, tech, technol
             <div class="card-overlay"></div>
             <div class="section-title">
               <h4>{{ item.name }} <span class="provider-highlight">{{ item.providerName }}</span></h4>
-              {# {% if item.locale %}<p class="small-text">{{ item.locale | join(", ") }}</p>{% endif %} #}
+              {% if item.locale %}<p class="small-text">{{ item.locale | join(", ") }}</p>{% endif %}
             </div>
           </a>
         {% endfor %}
       {% endif %}
     </div>
   </div>
-</section>
+</section> #}
 
 <section id="beta" class="padded-section">
   <div class="max-width" data-au="flex-container flex-vertical medium-gap">

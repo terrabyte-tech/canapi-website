@@ -3,16 +3,17 @@
     {
       "causeId": "BTrbynnnGji69ZWq5wEg",
       "actionUnitDescription": "tree being planted in a U.S. National Forest that needs it most",
-      "completedActionsCount": 0,
       "createdAt": "2026-07-23T05:00:00.000Z",
       "currency": "USD",
       "description": "The U.S. Forest Service, an agency of the U.S. Department of Agriculture, is the nation's foremost federal forestry organization. Employees manage hundreds of national forests and grasslands across 43 states, the Virgin Islands, and Puerto Rico.",
       "isTest": false,
       "providerName": "U.S. Forest Service",
-      "status": "active",
       "styleId": "us-forest-service",
       "name": "Tree Planting",
-      "providerUrl": "https://fs.usda.gov"
+      "providerUrl": "https://fs.usda.gov",
+      "actionUnitShortDescription": "tree(s) planted",
+      "status": "inactive",
+      "completedActionsCount": 0
     },
     {
       "causeId": "MakvgVaQzCAEvmSlhl7l",
@@ -26,12 +27,12 @@
       "completedActionsCount": 0,
       "createdAt": "2026-05-10T21:37:29.000Z",
       "currency": "USD",
-      "actionUnitDescription": "tree being planted in Arbor Day forests"
+      "actionUnitDescription": "tree being planted in Arbor Day forests",
+      "actionUnitShortDescription": "tree(s) planted"
     },
     {
       "causeId": "VaJWQ0u5pyEMtAJEsX1Q",
       "actionUnitDescription": "pound of plastic being removed from the ocean",
-      "status": "active",
       "completedActionsCount": 0,
       "createdAt": "2026-07-22T05:00:00.000Z",
       "currency": "USD",
@@ -45,7 +46,9 @@
         "Pacific Ocean",
         "Guatemala"
       ],
-      "providerUrl": "https://tideyocean.org"
+      "providerUrl": "https://tideyocean.org",
+      "actionUnitShortDescription": "pound(s) of plastic recovered",
+      "status": "inactive"
     },
     {
       "causeId": "YQ7R4uvMY3lGxzCZ4g4W",
@@ -63,8 +66,9 @@
       "description": "The Tampa Bay Estuary Program works within the Tampa Bay to restore and protect Florida seagrass. As a landmark habitat and keystone species in the bay, seagrass conservation indirectly protects the entire ecosystem.",
       "actionUnitDescription": "square meter of seagrass being preserved for one year",
       "name": "Seagrass Restoration & Protection",
-      "completedActionsCount": 2,
-      "status": "inactive"
+      "status": "inactive",
+      "actionUnitShortDescription": "meter(s) of habitat preserved",
+      "completedActionsCount": 0
     },
     {
       "causeId": "bvKm40Nl3rS15R4fprhW",
@@ -73,10 +77,11 @@
       "isTest": false,
       "name": "Tree Planting",
       "providerName": "One Tree Planted",
-      "status": "active",
       "styleId": "one-tree-planted",
       "description": "One Tree Planted is a non-profit organization focused on global reforestation. Their projects focus on restoring priority landscapes around the world - places where forests can make the biggest difference for nature and communities.",
-      "actionUnitDescription": "tree being planted in an ecologically important forest"
+      "actionUnitDescription": "tree being planted in an ecologically important forest",
+      "actionUnitShortDescription": "tree(s) planted",
+      "status": "inactive"
     },
     {
       "causeId": "craneTrust",
@@ -95,7 +100,8 @@
       "createdAt": "2026-01-01T06:00:00.000Z",
       "description": "The Crane Trust protects habitat for Sandhill cranes and other wildlife along the Platte River and promotes environmental education in Central Nebraska.",
       "actionUnitDescription": "square foot of Sandhill Crane habitat being protected for one year",
-      "name": "Sandhill Crane Habitat Protection"
+      "name": "Sandhill Crane Habitat Protection",
+      "actionUnitShortDescription": "meter(s) of habitat preserved"
     },
     {
       "causeId": "oceanPlasticCollection",
@@ -113,7 +119,8 @@
       "createdAt": "2026-01-01T06:00:00.000Z",
       "description": "The Ocean Cleanup is an organization that removes plastic and other waste from the world's oceans. Through scalable solutions, the organization has removed millions of kilograms from global waterways.",
       "actionUnitDescription": "pound of ocean plastic being removed from the Pacific Ocean",
-      "name": "Ocean Plastic Removal"
+      "name": "Ocean Plastic Removal",
+      "actionUnitShortDescription": "pound(s) of plastic recovered"
     },
     {
       "causeId": "vXDawM2i9NnJ9n3lc2jh",
@@ -127,7 +134,8 @@
       "styleId": "green-omaha-coalition",
       "actionUnitDescription": "seed packet is provided to an attendee at Earth Day Omaha",
       "providerUrl": "https://greenomaha.org",
-      "name": "Environmental Education in Omaha, NE"
+      "name": "Environmental Education in Omaha, NE",
+      "actionUnitShortDescription": "seed packet(s) donated"
     }
   ]
 }

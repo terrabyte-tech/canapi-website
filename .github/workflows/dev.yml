@@ -31,3 +31,15 @@ jobs:
         port: 22
         local_path: './_site/*'
         remote_path: ${{ secrets.sftp_remote_path_dev }}
+
+    # The step above globs './_site/*', which skips dotfiles — so .htaccess
+    # (built by 11ty into _site/) needs its own explicit upload.
+    - name: Deploy .htaccess
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      with:
+        server: ${{ secrets.sftp_server }}
+        username: ${{ secrets.sftp_username }}
+        password: ${{ secrets.sftp_password }}
+        port: 22
+        local_path: './_site/.htaccess'
+        remote_path: ${{ secrets.sftp_remote_path_dev }}
