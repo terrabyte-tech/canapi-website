@@ -12,8 +12,8 @@
       "name": "Tree Planting",
       "providerUrl": "https://fs.usda.gov",
       "actionUnitShortDescription": "tree(s) planted",
-      "completedActionsCount": 1,
-      "status": "inactive"
+      "status": "inactive",
+      "completedActionsCount": 0
     },
     {
       "causeId": "MakvgVaQzCAEvmSlhl7l",
@@ -68,7 +68,7 @@
       "name": "Seagrass Restoration & Protection",
       "status": "inactive",
       "actionUnitShortDescription": "meter(s) of habitat preserved",
-      "completedActionsCount": 4
+      "completedActionsCount": 0
     },
     {
       "causeId": "bvKm40Nl3rS15R4fprhW",
