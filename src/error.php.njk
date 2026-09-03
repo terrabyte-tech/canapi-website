@@ -33,6 +33,11 @@ noIndex: true
     case 404:
     $error_code = "404";
     break;
+
+    # any other / unset status
+    default:
+    $error_code = "Unknown";
+    break;
   }
 ?>
 
