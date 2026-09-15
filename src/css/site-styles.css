@@ -152,7 +152,7 @@ ul, ol{
 }
 
 /* examples section */
-#about .section-col img{
+#about .elem-col img{
   max-width:100%;
   width:300px;
   height:200px;
@@ -177,7 +177,7 @@ ul, ol{
 }
 
 /* footer */
-footer .subsection{
+footer .elem-content{
   margin-top:2rem;
 }
 

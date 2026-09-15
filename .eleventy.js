@@ -45,6 +45,11 @@ module.exports = function (eleventyConfig) {
     "node_modules/@terrabyte/web-ui/img": "img"
   });
 
+  // Aurum framework
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/@goldenharpmedia/aurum/dist": "css/aurum"
+  });
+
   // Phosphor Icons
   eleventyConfig.addPassthroughCopy({
     "node_modules/@phosphor-icons/web/src": "phosphor"
@@ -55,6 +60,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/**/*.js");
   eleventyConfig.addWatchTarget("src/**/*.{png,jpg,jpeg,gif,svg,webp,ico,woff,woff2}");
   eleventyConfig.addWatchTarget("node_modules/@terrabyte/web-ui");
+  eleventyConfig.addWatchTarget("node_modules/@goldenharpmedia/aurum");
 
 // Shortcodes
   eleventyConfig.addShortcode("currentYear", () => `${new Date().getFullYear()}`);

@@ -17,6 +17,7 @@
     "@11ty/eleventy": "^3.1.2"
   },
   "dependencies": {
+    "@goldenharpmedia/aurum": "github:goldenharpmedia/aurum",
     "@phosphor-icons/web": "^2.1.2",
     "@terrabyte/web-ui": "github:terrabyte-tech/terrabyte-web-ui",
     "cheerio": "^1.1.2",

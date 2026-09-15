@@ -4,4 +4,9 @@ eleventyExcludeFromCollections: true
 ---
 User-agent: *
 Disallow:
+{%- for page in collections.all -%}
+{%- if page.url and page.data.noIndex %}
+Disallow: {{ page.url }}
+{%- endif -%}
+{%- endfor %}
 Sitemap: {{ site.url }}/sitemap.xml

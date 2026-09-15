@@ -12,71 +12,89 @@ pageType: docs
 </section>
 
 <section id="getting-started" class="padded-section" data-au="">
-  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+  <div class="max-width" data-au="flex-container flex-vertical medium-gap">
     <div class="section-title">
         <h2>Getting Started</h2>
     </div>
-    {# <div></div> #}
-    <p>Canapi lets you attach a charitable cause to any action in your app or website - a purchase, a signup, a completed task. When your users do something, Canapi funds a contribution to an environmental cause. Your users see the impact. The contribution is tracked, billed, and fulfilled by Canapi with the help of our providers.</p>
-    <p>Getting up and running takes about 15 minutes and requires no changes to your existing infrastructure beyond a single API call.</p>
 
-    <h3>Before you begin, you will need:</h3>
-    <ul>
-      <li>A Canapi account - sign in through the <a href="https://app.canapi.io">login page</a> or request a Beta account via <a href="mailto:info@terrabyte.eco?subject=Canapi Sign Up">email</a></li>
-      <li>A billing account with a card on file, set up under <a href="https://app.canapi.io/settings#billing-settings">Settings</a> - contributions cannot be logged until this is active</li>
-      <li>An active Canapi instance configured with a cause</li>
-      <li>An API key and signing secret generated for that instance</li>
-    </ul>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <p>Canapi lets you attach a charitable cause to any action in your app or website - a purchase, a signup, a completed task. When your users do something, Canapi funds a contribution to an environmental cause. Your users see the impact. The contribution is tracked, billed, and fulfilled by Canapi with the help of our providers.</p>
+      <p>Getting up and running takes about 15 minutes and requires no changes to your existing infrastructure beyond a single API call.</p>
+    </div>
+
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Before you begin, you will need:</h3>
+      <ul>
+        <li>A Canapi account - sign in through the <a href="https://app.canapi.io">login page</a> or request a Beta account via <a href="mailto:info@terrabyte.eco?subject=Canapi Sign Up">email</a></li>
+        <li>A billing account with a card on file, set up under <a href="https://app.canapi.io/settings#billing-settings">Settings</a> - contributions cannot be logged until this is active</li>
+        <li>An active Canapi instance configured with a cause</li>
+        <li>An API key and signing secret generated for that instance</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <section id="api-key" class="padded-section">
-  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+  <div class="max-width" data-au="flex-container flex-vertical medium-gap">
     <div class="section-title">
       <h2>Getting Your API Key and Signing Secret</h2>
     </div>
-    <p>Each Canapi instance has its own API key and signing secret, generated together. Both are generated from the instance page in your portal.</p>
-    <ol>
-      <li>Log in and navigate to <a href="https://app.canapi.io/instances">Instances</a></li>
-      <li>Select the instance you want to integrate</li>
-      <li>Under <strong>API Key</strong>, click <strong>Regenerate Key</strong> and confirm</li>
-      <li>Copy both values immediately - they are shown once and never stored</li>
-    </ol>
-    <div class="">
+
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <p>Each Canapi instance has its own API key and signing secret, generated together. Both are generated from the instance page in your portal.</p>
+      <ol>
+        <li>Log in and navigate to <a href="https://app.canapi.io/instances">Instances</a></li>
+        <li>Select the instance you want to integrate</li>
+        <li>Under <strong>API Key</strong>, click <strong>Regenerate Key</strong> and confirm</li>
+        <li>Copy both values immediately - they are shown once and never stored</li>
+      </ol>
+    </div>
+    <div class="" data-au="flex-container flex-vertical small-gap">
       <p><strong>Keep your API key and signing secret secret.</strong> Neither should ever be committed to source control or exposed in client-side code. Store both as environment variables on your server, or in your platform's secrets manager.</p>
     </div>
-    <p>Your key will look like this:</p>
-    <pre><code>xxx_aLotOfNumb3rsAndCharact3rsThatL00ksScaryButIsJustSecur3</code></pre>
-    <p>Your signing secret is a separate value shown alongside it at the same time.</p>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <p>Your key will look like this:</p>
+      <pre><code>xxx_aLotOfNumb3rsAndCharact3rsThatL00ksScaryButIsJustSecur3</code></pre>
+    </div>
   </div>
 </section>
 
 <section id="api-integration" class="padded-section">
-  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+  <div class="max-width" data-au="flex-container flex-vertical medium-gap">
     <div class="section-title">
       <h2>Making a Contribution</h2>
     </div>
-    <p>When something meaningful happens in your app - a completed order, a finished workout, a booked appointment - send a single <code>POST</code> request to the Canapi contribute endpoint. Canapi handles the rest.</p>
 
-    <h3>Endpoint</h3>
-    <pre><code>POST https://api.canapi.io/contribute</code></pre>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <p>When something meaningful happens in your app - a completed order, a finished workout, a booked appointment - send a single <code>POST</code> request to the Canapi contribute endpoint. Canapi handles the rest.</p>
+    </div>
 
-    <h3>Authentication</h3>
-    <p>Pass your API key as a Bearer token in the <code>Authorization</code> header:</p>
-    <pre><code>Authorization: Bearer xxx_your_api_key_here</code></pre>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Endpoint</h3>
+      <pre><code>POST https://api.canapi.io/contribute</code></pre>
+    </div>
 
-    <h3>Request signing</h3>
-    <p>Every request must also be signed using your instance's signing secret, so that a leaked API key alone isn't enough to make a request on your behalf. Send three additional headers:</p>
-    <ul>
-      <li><code>X-Canapi-Timestamp</code> - the current Unix timestamp, in seconds</li>
-      <li><code>X-Canapi-Idempotency-Key</code> - a string unique to this specific contribution. Reusing one rejects the request as a duplicate rather than logging it again</li>
-      <li><code>X-Canapi-Signature</code> - <code>HMAC-SHA256</code> of the string <code>{timestamp}.{idempotencyKey}</code>, using your signing secret as the HMAC key, hex-encoded</li>
-    </ul>
-    <p>Requests with a timestamp more than 5 minutes old (or in the future) are rejected, so make sure your server's clock is accurate.</p>
-    <p><strong>Choosing your idempotency key matters.</strong> A random value (e.g. a UUID) on every call only protects against someone else intercepting and replaying your request - it does nothing to stop <em>your own</em> code from accidentally billing the same real-world event twice (a retry, a double-click, a webhook firing more than once). To protect against that too, derive the key from something stable and unique to the event itself - your internal order ID, transaction ID, or similar - so that if your own code calls <code>contribute</code> twice for the same order, the second call is rejected as a duplicate instead of logging (and billing) a second contribution.</p>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Authentication</h3>
+      <p>Pass your API key as a Bearer token in the <code>Authorization</code> header:</p>
+      <pre><code>Authorization: Bearer xxx_your_api_key_here</code></pre>
+    </div>
 
-    <h3>Example — JavaScript (Node.js)</h3>
-    <pre><code>import crypto from 'crypto';
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Request signing</h3>
+      <p>Every request must also be signed using your instance's signing secret, so that a leaked API key alone isn't enough to make a request on your behalf. Send three additional headers:</p>
+      <ul>
+        <li><code>X-Canapi-Timestamp</code> - the current Unix timestamp, in seconds</li>
+        <li><code>X-Canapi-Idempotency-Key</code> - a string unique to this specific contribution. Reusing one rejects the request as a duplicate rather than logging it again</li>
+        <li><code>X-Canapi-Signature</code> - <code>HMAC-SHA256</code> of the string <code>{timestamp}.{idempotencyKey}</code>, using your signing secret as the HMAC key, hex-encoded</li>
+      </ul>
+      <p>Requests with a timestamp more than 5 minutes old (or in the future) are rejected, so make sure your server's clock is accurate.</p>
+      <p><strong>Choosing your idempotency key matters.</strong> A random value (e.g. a UUID) on every call only protects against someone else intercepting and replaying your request - it does nothing to stop <em>your own</em> code from accidentally billing the same real-world event twice (a retry, a double-click, a webhook firing more than once). To protect against that too, derive the key from something stable and unique to the event itself - your internal order ID, transaction ID, or similar - so that if your own code calls <code>contribute</code> twice for the same order, the second call is rejected as a duplicate instead of logging (and billing) a second contribution.</p>
+    </div>
+
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Example — JavaScript (Node.js)</h3>
+      <pre><code>import crypto from 'crypto';
 
 const timestamp = Math.floor(Date.now() / 1000).toString();
 // Use your own stable order/transaction ID here (not a random UUID) so that
@@ -108,9 +126,11 @@ if (data.status === 'success') {
   console.log(`Cause: ${data.causeId}`);
   // e.g. "Your order helped plant a tree with Canapi!"
 }</code></pre>
+    </div>
 
-    <h3>Example — cURL</h3>
-    <pre><code>TIMESTAMP=$(date +%s)
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Example — cURL</h3>
+      <pre><code>TIMESTAMP=$(date +%s)
 # Use your own stable order/transaction ID here (not a random value) so a
 # retried call for the same order gets rejected as a duplicate, not re-billed.
 IDEMPOTENCY_KEY="your-order-id"
@@ -121,20 +141,27 @@ curl -X POST https://api.canapi.io/contribute \
   -H "X-Canapi-Timestamp: $TIMESTAMP" \
   -H "X-Canapi-Idempotency-Key: $IDEMPOTENCY_KEY" \
   -H "X-Canapi-Signature: $SIGNATURE"</code></pre>
+    </div>
 
-    <h3>Where to place the call</h3>
-    <p>Call the endpoint at the moment the meaningful action is confirmed - after a payment is captured, after a form is successfully submitted, after an order is fulfilled. Avoid calling it speculatively (e.g. when a user adds something to a cart) since contributions are billed and logged as completed actions. Always call it from your server, never from client-side code - your API key and signing secret must never be exposed to a browser.</p>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Where to place the call</h3>
+      <p>Call the endpoint at the moment the meaningful action is confirmed - after a payment is captured, after a form is successfully submitted, after an order is fulfilled. Avoid calling it speculatively (e.g. when a user adds something to a cart) since contributions are billed and logged as completed actions. Always call it from your server, never from client-side code - your API key and signing secret must never be exposed to a browser.</p>
+    </div>
 
-    <h3>Labeling by domain (optional)</h3>
-    <p>Your instance settings include an optional "Allowed Domains" list. This is for your own labeling and analytics only - it has no effect on which requests are accepted. Every contribution's authenticity comes from the API key and signature, not from where it says it's calling from.</p>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Labeling by domain (optional)</h3>
+      <p>Your instance settings include an optional "Allowed Domains" list. This is for your own labeling and analytics only - it has no effect on which requests are accepted. Every contribution's authenticity comes from the API key and signature, not from where it says it's calling from.</p>
+    </div>
 
-    <h3>Rate limiting</h3>
-    <p>Each instance can optionally be configured with an hourly contribution cap in its dashboard settings. Requests that would exceed it return <code>429</code> and are not logged as billable actions - they don't count against the cap themselves, so once the hourly window resets, contributions resume normally without any action needed on your part.</p>
+    <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Rate limiting</h3>
+      <p>Each instance can optionally be configured with an hourly contribution cap in its dashboard settings. Requests that would exceed it return <code>429</code> and are not logged as billable actions - they don't count against the cap themselves, so once the hourly window resets, contributions resume normally without any action needed on your part.</p>
+    </div>
   </div>
 </section>
 
 <section id="response" class="padded-section">
-  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+  <div class="max-width" data-au="flex-container flex-vertical medium-gap">
     <div class="section-title">
       <h2>Response Reference</h2>
     </div>
@@ -174,7 +201,7 @@ curl -X POST https://api.canapi.io/contribute \
 </section>
 
 <section id="errors" class="padded-section">
-  <div class="max-width" data-au="flex-container flex-vertical small-gap">
+  <div class="max-width" data-au="flex-container flex-vertical medium-gap">
     <div class="section-title">
       <h2>Error Reference</h2>
     </div>
@@ -242,3 +269,5 @@ curl -X POST https://api.canapi.io/contribute \
     </table>
   </div>
 </section>
+
+{# need help? section #}
