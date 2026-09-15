@@ -73,49 +73,56 @@ window.addEventListener("load", function(){
     }, HOLD_MS);
   })();
 
-  // ── Beta signup form ──────────────────────────────────────────────────────
-  // Posts directly to the submitBetaInterest Cloud Function in canapi-web-app
-  // (no auth — there's no account yet at this stage). Firestore rules deny all
-  // client reads/writes on betaSignups, so this endpoint is the only way in.
-  (function initBetaSignupForm() {
-    const form = document.querySelector("[data-beta-signup-form]");
-    if (!form) return;
-
-    const submitBtn = form.querySelector("[data-beta-signup-submit]");
-    const statusEl = form.querySelector("[data-beta-signup-status]");
+  // ── Beta signup forms ─────────────────────────────────────────────────────
+  // Two independent forms share this markup/behavior contract (developer/
+  // business and nonprofit partner) -- each posts its own `formType`
+  // (data-form-type, e.g. "developer"/"nonprofit") so the Cloud Function can
+  // tell them apart. Kept separate from the form's own `id` on purpose --
+  // that's free to change for CSS/anchor-link reasons without silently
+  // changing what gets sent to the backend. Posts directly to the
+  // submitBetaInterest Cloud Function in canapi-web-app (no auth — there's
+  // no account yet at this stage). Firestore rules deny all client
+  // reads/writes on betaSignups, so this endpoint is the only way in.
+  (function initBetaSignupForms() {
     const FUNCTION_URL = "https://us-central1-terrabyte-canapi.cloudfunctions.net/submitBetaInterest";
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    document.querySelectorAll("[data-beta-signup-form]").forEach((form) => {
+      const formType = form.dataset.formType;
+      const submitBtn = form.querySelector("[data-beta-signup-submit]");
+      const statusEl = form.querySelector("[data-beta-signup-status]");
 
-      const name = form.elements.name.value;
-      const email = form.elements.email.value;
-      const website = form.elements.website.value; // honeypot
-      const newsletterOptIn = form.elements.newsletterOptIn.checked;
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      submitBtn.disabled = true;
-      statusEl.textContent = "Submitting...";
-      statusEl.className = "helper-message";
+        const name = form.elements.name.value;
+        const email = form.elements.email.value;
+        const website = form.elements.website.value; // honeypot
+        const newsletterOptIn = form.elements.newsletterOptIn.checked;
 
-      try {
-        const res = await fetch(FUNCTION_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, website, newsletterOptIn }),
-        });
-        const json = await res.json();
-        if (!res.ok) throw new Error(json.error ?? `HTTP ${res.status}`);
-
-        form.reset();
-        statusEl.textContent = "Thanks! We'll be in touch when the beta opens up.";
+        submitBtn.disabled = true;
+        statusEl.textContent = "Submitting...";
         statusEl.className = "helper-message";
-      } catch (err) {
-        console.error("Beta signup failed:", err);
-        statusEl.textContent = err.message || "Something went wrong. Please try again.";
-        statusEl.className = "helper-message error-text";
-      } finally {
-        submitBtn.disabled = false;
-      }
+
+        try {
+          const res = await fetch(FUNCTION_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ formType, name, email, website, newsletterOptIn }),
+          });
+          const json = await res.json();
+          if (!res.ok) throw new Error(json.error ?? `HTTP ${res.status}`);
+
+          form.reset();
+          statusEl.textContent = "Thanks! We'll be in touch when the beta opens up.";
+          statusEl.className = "helper-message";
+        } catch (err) {
+          console.error("Beta signup failed:", err);
+          statusEl.textContent = err.message || "Something went wrong. Please try again.";
+          statusEl.className = "helper-message error-text";
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
     });
   })();
 

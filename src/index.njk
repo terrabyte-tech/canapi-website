@@ -99,7 +99,7 @@ keywords: canapi, terrabyte, automatic, api, software, b2b, green, tech, technol
         {% for item in canapi.causes %}
           <a class="solid-section section-card ad-card {{ item.styleId }}" data-au="set-width flex-container flex-vertical justify-right" href="{{ item.providerUrl }}" target="_blank" rel="noopener noreferrer" {% if item.status == 'inactive' %}data-disabled{% endif %}>
             {% if item.status == 'inactive' %}
-              <div class="inactive-icon icon-container" data-au="flex-container all-center" data-tooltip="Contributions to this cause are not yet fully supported." data-tooltip-force-right>
+              <div class="inactive-icon icon-container" data-au="flex-container all-center" data-tooltip="Contributions to this cause are not yet fully supported.">
                 <i class="ph ph-prohibit"></i>
               </div>
             {% endif %}
@@ -126,17 +126,17 @@ keywords: canapi, terrabyte, automatic, api, software, b2b, green, tech, technol
         <div class="elem-header">
           <h3>For Businesses/Developers</h3>
         </div>
-        <form id="developer-beta-signup-form" data-beta-signup-form data-au="flex-container flex-vertical medium-gap">
+        <form id="developer-beta-signup-form" data-beta-signup-form data-form-type="developer" data-au="flex-container flex-vertical medium-gap">
           <div class="form-row-group" data-au="flex-container flex-vertical small-gap">
             <div class="form-row">
-              <input type="text" name="name" id="canapi-name" placeholder="Your Name or Business Name" aria-label="Your name or business name"/>
+              <input type="text" name="name" id="developer-canapi-name" placeholder="Your Name or Business Name" aria-label="Your name or business name"/>
             </div>
             <div class="form-row">
-              <input type="email" name="email" id="canapi-email" placeholder="name@email.com" aria-label="Email address" required/>
+              <input type="email" name="email" id="developer-canapi-email" placeholder="name@email.com" aria-label="Email address" required/>
             </div>
             <div class="form-row" data-au="flex-container align-center xsmall-gap">
-              <input type="checkbox" name="newsletterOptIn" id="canapi-newsletter-optin"/>
-              <label for="canapi-newsletter-optin">Also sign me up for the Terrabyte newsletter</label>
+              <input type="checkbox" name="newsletterOptIn" id="developer-canapi-newsletter-optin"/>
+              <label for="developer-canapi-newsletter-optin">Also sign me up for the Terrabyte newsletter</label>
             </div>
           </div>
           <div class="form-row-group" data-au="flex-container flex-vertical small-gap">
@@ -148,7 +148,7 @@ keywords: canapi, terrabyte, automatic, api, software, b2b, green, tech, technol
               <input type="text" name="website" tabindex="-1" autocomplete="off"/>
             </div>
             <div class="form-row" data-au="flex-container align-center small-gap">
-              <input type="submit" value="Request Beta Access" data-beta-signup-submit data-/>
+              <input type="submit" value="Request Beta Access" data-beta-signup-submit/>
               <span class="helper-message" data-beta-signup-status></span>
             </div>
           </div>
@@ -158,17 +158,17 @@ keywords: canapi, terrabyte, automatic, api, software, b2b, green, tech, technol
         <div class="elem-header">
           <h3>For Nonprofit Partners</h3>
         </div>
-        <form id="nonprofit-beta-signup-form" data-beta-signup-form data-au="flex-container flex-vertical medium-gap">
+        <form id="nonprofit-beta-signup-form" data-beta-signup-form data-form-type="nonprofit" data-au="flex-container flex-vertical medium-gap">
           <div class="form-row-group" data-au="flex-container flex-vertical small-gap">
             <div class="form-row">
-              <input type="text" name="name" id="canapi-name" placeholder="Your Organization Name" aria-label="Your organization name"/>
+              <input type="text" name="name" id="nonprofit-canapi-name" placeholder="Your Organization Name" aria-label="Your organization name"/>
             </div>
             <div class="form-row">
-              <input type="email" name="email" id="canapi-email" placeholder="name@email.com" aria-label="Email address" required/>
+              <input type="email" name="email" id="nonprofit-canapi-email" placeholder="name@email.com" aria-label="Email address" required/>
             </div>
             <div class="form-row" data-au="flex-container align-center xsmall-gap">
-              <input type="checkbox" name="newsletterOptIn" id="canapi-newsletter-optin"/>
-              <label for="canapi-newsletter-optin">Also sign me up for the Terrabyte newsletter</label>
+              <input type="checkbox" name="newsletterOptIn" id="nonprofit-canapi-newsletter-optin"/>
+              <label for="nonprofit-canapi-newsletter-optin">Also sign me up for the Terrabyte newsletter</label>
             </div>
           </div>
           <div class="form-row-group" data-au="flex-container flex-vertical small-gap">
