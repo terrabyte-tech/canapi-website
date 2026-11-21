@@ -144,6 +144,45 @@ curl -X POST https://api.canapi.io/contribute \
     </div>
 
     <div class="" data-au="flex-container flex-vertical small-gap">
+      <h3>Example — Python</h3>
+      <pre><code>import hashlib
+import hmac
+import os
+import time
+
+import requests  # pip install requests
+
+timestamp = str(int(time.time()))
+# Use your own stable order/transaction ID here (not a random UUID) so that
+# if this code ever runs twice for the same order, the second call is
+# rejected as a duplicate instead of billing the order a second time.
+idempotency_key = str(your_order_id)
+signature = hmac.new(
+    os.environ["CANAPI_SIGNING_SECRET"].encode(),
+    f"{timestamp}.{idempotency_key}".encode(),
+    hashlib.sha256,
+).hexdigest()
+
+response = requests.post(
+    "https://api.canapi.io/contribute",
+    headers={
+        "Authorization": f"Bearer {os.environ['CANAPI_API_KEY']}",
+        "X-Canapi-Timestamp": timestamp,
+        "X-Canapi-Idempotency-Key": idempotency_key,
+        "X-Canapi-Signature": signature,
+    },
+    timeout=10,
+)
+
+data = response.json()
+
+if data.get("status") == "success":
+    print(f"Contribution logged - action ID: {data['actionId']}")
+    print(f"Cause: {data['causeId']}")
+    # e.g. "Your order helped plant a tree with Canapi!"</code></pre>
+    </div>
+
+    <div class="" data-au="flex-container flex-vertical small-gap">
       <h3>Where to place the call</h3>
       <p>Call the endpoint at the moment the meaningful action is confirmed - after a payment is captured, after a form is successfully submitted, after an order is fulfilled. Avoid calling it speculatively (e.g. when a user adds something to a cart) since contributions are billed and logged as completed actions. Always call it from your server, never from client-side code - your API key and signing secret must never be exposed to a browser.</p>
     </div>
